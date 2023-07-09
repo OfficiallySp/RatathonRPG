@@ -1,0 +1,13 @@
+[
+null,
+{"id":1,"battlerName":"Peks","characterIndex":0,"characterName":"Peks","classId":1,"equips":[1,0,0,0,0],"faceIndex":0,"faceName":"Peks","traits":[],"initialLevel":1,"maxLevel":10,"name":"Peks","nickname":"IHasPeks","note":"","profile":""},
+{"id":2,"battlerName":"Muercie","characterIndex":0,"characterName":"Muercie","classId":2,"equips":[8,0,0,0,0],"faceIndex":0,"faceName":"Muercie","traits":[],"initialLevel":1,"maxLevel":1,"name":"Muercie","nickname":"","note":"","profile":""},
+{"id":3,"battlerName":"","characterIndex":0,"characterName":"","classId":1,"equips":[0,0,0,0,0],"faceIndex":0,"faceName":"","traits":[],"initialLevel":1,"maxLevel":99,"name":"Poppin","nickname":"","note":"","profile":""},
+{"id":4,"battlerName":"","characterIndex":0,"characterName":"","classId":1,"equips":[0,0,0,0,0],"faceIndex":0,"faceName":"","traits":[],"initialLevel":1,"maxLevel":99,"name":"4","nickname":"","note":"","profile":""},
+{"id":5,"battlerName":"Rugo","characterIndex":0,"characterName":"Rugo","classId":1,"equips":[0,0,0,0,0],"faceIndex":0,"faceName":"Rugo","traits":[],"initialLevel":1,"maxLevel":99,"name":"Rugo","nickname":"","note":"","profile":""},
+{"id":6,"battlerName":"","characterIndex":0,"characterName":"","classId":1,"equips":[0,0,0,0,0],"faceIndex":0,"faceName":"","traits":[],"initialLevel":1,"maxLevel":99,"name":"Flauenn","nickname":"","note":"","profile":""},
+{"id":7,"battlerName":"Blob","characterIndex":0,"characterName":"Blob","classId":1,"equips":[0,0,0,0,0],"faceIndex":0,"faceName":"Blob","traits":[],"initialLevel":1,"maxLevel":99,"name":"Wobin","nickname":"","note":"","profile":""},
+{"id":8,"battlerName":"","characterIndex":0,"characterName":"","classId":1,"equips":[0,0,0,0,0],"faceIndex":0,"faceName":"","traits":[],"initialLevel":1,"maxLevel":99,"name":"PK","nickname":"","note":"","profile":""},
+{"id":9,"battlerName":"Shane","characterIndex":0,"characterName":"Shane","classId":1,"equips":[0,0,0,0,0],"faceIndex":0,"faceName":"Shane","traits":[],"initialLevel":1,"maxLevel":99,"name":"Shane","nickname":"","note":"","profile":""},
+{"id":10,"battlerName":"","characterIndex":0,"characterName":"","classId":1,"equips":[0,0,0,0,0],"faceIndex":0,"faceName":"","traits":[],"initialLevel":1,"maxLevel":99,"name":"???","nickname":"","note":"","profile":""}
+]
