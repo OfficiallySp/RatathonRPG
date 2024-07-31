@@ -241,7 +241,7 @@ Scene_Base.prototype.createTimerGauge = function() {
 var _mog_visualTimer_sbattle_createSpriteset = Scene_Battle.prototype.createSpriteset;
 Scene_Battle.prototype.createSpriteset = function() {
 	_mog_visualTimer_sbattle_createSpriteset.call(this);
-	if (!this._hudField) {this.createHudField()};
+	if (!this._hudField) {this.createHudField()}
     this.createTimerGauge();
 	this.sortMz();	
 };
@@ -256,7 +256,7 @@ Scene_Battle.prototype.createSpriteset = function() {
 var _mog_visualTimer_sMap_createSpriteset = Scene_Map.prototype.createSpriteset;
 Scene_Map.prototype.createSpriteset = function() {
 	_mog_visualTimer_sMap_createSpriteset.call(this);
-	if (!this._hudField) {this.createHudField()};
+	if (!this._hudField) {this.createHudField()}
     this.createTimerGauge();
 	this.sortMz();	
 };
@@ -266,7 +266,7 @@ Scene_Map.prototype.createSpriteset = function() {
 //==============================
 var _mog_visualTimer_scnMap_snapForBattleBackground = Scene_Map.prototype.snapForBattleBackground;
 Scene_Map.prototype.snapForBattleBackground = function() {
-	if (this._hudField && SceneManager.isNextScene(Scene_Battle)) {this._hudField.visible = false};
+	if (this._hudField && SceneManager.isNextScene(Scene_Battle)) {this._hudField.visible = false}
 	_mog_visualTimer_scnMap_snapForBattleBackground.call(this);
 };
 
@@ -279,7 +279,7 @@ Scene_Map.prototype.snapForBattleBackground = function() {
 //==============================
 var _mog_timerGauge_sprtBase_createTimer = Spriteset_Base.prototype.createTimer;
 Spriteset_Base.prototype.createTimer = function() {return
-    if ($gameSystem._timerGauge.enabled) {return};
+    if ($gameSystem._timerGauge.enabled) {return}
     _mog_timerGauge_sprtBase_createTimer.call(this);
 };
 
@@ -308,7 +308,7 @@ TimerGauge.prototype.initialize = function() {
 	this.loadBitmap();
     this.createSprites();
     this.update();
-	if (this.data().autoFade && !this.isHudVisible()) {this.opacity = this.data().fadeMax};
+	if (this.data().autoFade && !this.isHudVisible()) {this.opacity = this.data().fadeMax}
 };
 
 //==============================
@@ -348,8 +348,8 @@ TimerGauge.prototype.getData = function() {
 //==============================
 TimerGauge.prototype.createSprites = function() {
     this.createLayout();
-	if (this.data().numberVisible) {this.createNumber()};
-	if (this.data().gaugeVisible) {this.createGauge()};
+	if (this.data().numberVisible) {this.createNumber()}
+	if (this.data().gaugeVisible) {this.createGauge()}
 };
 
 
@@ -372,7 +372,7 @@ TimerGauge.prototype.createNumber = function() {
 	 for (var i = 0; i < 4; i++) {
 	      this._numbers[i] = new Sprite(this._numberImg);
 		  this._fieldNumber.addChild(this._numbers[i]);
-	 };
+	 }
 };
 
 //==============================
@@ -400,8 +400,8 @@ TimerGauge.prototype.refreshTimer = function() {
 	 if (this._numbers) {
 	     for (var i = 0; i < this._numbers.length; i++) {
 	          this.refreshNumber(this._numbers[i],i);
-	     };
-	 };
+	     }
+	 }
 };
 
 //==============================
@@ -416,11 +416,11 @@ TimerGauge.prototype.refreshNumber = function(sprite,index) {
 		var n = Math.abs(this.minutes()).toString().split("");
 		var value = n < 10 ? (index === 2 ? n[1] : n[0]) : (index === 2 ? n[0] : n[1]);
 	} else {
-		var x = (cw * index) + Moghunter.timerGauge_secX;;
+		var x = (cw * index) + Moghunter.timerGauge_secX;
 		var y = Moghunter.timerGauge_secY;
 		var n = Math.abs(this.seconds()).toString().split("");
 		var value = n < 10 ? (index === 0 ? n[1] : n[0]) : (index === 0 ? n[0] : n[1]);
-	};
+	}
 	var valueReal = value ? value : 0;	
 	var v = valueReal * cw;
     sprite.setFrame(v,0,cw,ch);
@@ -464,12 +464,12 @@ TimerGauge.prototype.updatePosition = function() {
 // * Is Hud Visible
 //==============================
 TimerGauge.prototype.isHudVisible = function() {
-	if (this._testMode) {return true};
-	if ($gamePlayer.screen_realX() < this.x - this._dataImg1[0]) {return true};
-	if ($gamePlayer.screen_realX() > this.x + this._dataImg1[2]) {return true};
-	if ($gamePlayer.screen_realY() < this.y - this._dataImg1[1]) {return true};
-	if ($gamePlayer.screen_realY() > this.y + this._dataImg1[3]) {return true};
-	if (this.opacity < this.data().fadeMax) {return true};
+	if (this._testMode) {return true}
+	if ($gamePlayer.screen_realX() < this.x - this._dataImg1[0]) {return true}
+	if ($gamePlayer.screen_realX() > this.x + this._dataImg1[2]) {return true}
+	if ($gamePlayer.screen_realY() < this.y - this._dataImg1[1]) {return true}
+	if ($gamePlayer.screen_realY() > this.y + this._dataImg1[3]) {return true}
+	if (this.opacity < this.data().fadeMax) {return true}
 	return false;
 };
    
@@ -482,9 +482,9 @@ TimerGauge.prototype.updateAutoFade = function() {
 	else {
 		if (this.opacity > this.data().fadeMax) {	
 			this.opacity -= 10;
-			if (this.opacity < this.data().fadeMax) {this.opacity = this.data().fadeMax};
-		};
-	};
+			if (this.opacity < this.data().fadeMax) {this.opacity = this.data().fadeMax}
+		}
+	}
 };
 
 //==============================
@@ -492,23 +492,23 @@ TimerGauge.prototype.updateAutoFade = function() {
 //==============================
 TimerGauge.prototype.updateVisible = function() {
     this.visible = $gameTimer.isWorking();
-	if (this.data().autoFade) {this.updateAutoFade()};
+	if (this.data().autoFade) {this.updateAutoFade()}
 };
 
 //==============================
 // * Update Sprites
 //==============================
 TimerGauge.prototype.updateSprites = function() {
-	if (this._seconds != $gameTimer.seconds() ) {this.refreshTimer()};
+	if (this._seconds != $gameTimer.seconds() ) {this.refreshTimer()}
 	if ($gameTimer._frames === 0 && $gameTimer._needRefresh) {
 		$gameTimer._needRefresh = false;
 		this.refreshTimer()
 	}
 	if ($gameTimer._refreshTime > 0) {
 		$gameTimer._refreshTime--;
-		if ($gameTimer._refreshTime === 0) {this.refreshTimer()};
-	};
-	if (this._gauge) {this.updateGauge()};
+		if ($gameTimer._refreshTime === 0) {this.refreshTimer()}
+	}
+	if (this._gauge) {this.updateGauge()}
     this.updatePosition();
 	this.updateVisible();
 };
@@ -521,6 +521,6 @@ TimerGauge.prototype.update = function() {
 	if (this._dataImg1[0] != null) {
 		this.updateSprites()
 	} else {
-	    if (this._numberImg.isReady() && this._layoutImg.isReady()) {this.getData()};	
-	};
+	    if (this._numberImg.isReady() && this._layoutImg.isReady()) {this.getData()}	
+	}
 };

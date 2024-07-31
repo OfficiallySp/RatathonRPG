@@ -722,7 +722,7 @@
 		Moghunter.titleMcircles_T[i] = Number(Moghunter.parameters['Circle ' + String(i + 1) + " Transition Time"] || 60);
 		Moghunter.titleMcircles_P[i] = Number(Moghunter.parameters['Circle ' + String(i + 1) + " Pulse Mode"] || 0);
 		Moghunter.titleMcircles_B[i] = Number(Moghunter.parameters['Circle ' + String(i + 1) + " Blend Mode"] || 1);
-	};	
+	}	
 	
 //=============================================================================
 // ■ Scene Title  ■ 
@@ -742,7 +742,7 @@ Scene_Title.prototype.create = function() {
 //==============================
 var _mog_mcirclestitles_createForeground = Scene_Title.prototype.createForeground;
 Scene_Title.prototype.createForeground = function() {
-	if (!this._titleField2) {this.createTitleField2()};
+	if (!this._titleField2) {this.createTitleField2()}
 	this.createMcircles();
 	_mog_mcirclestitles_createForeground.call(this);
 };		
@@ -765,7 +765,7 @@ Scene_Title.prototype.createMcircles = function() {
         this._mcircles[i] = new TitleMCircles(i);
 	    this._mcircles[i].zIndex = Moghunter.titleMcircles_Z[i];
 	    this._titleField2.addChild(this._mcircles[i]);
-    };
+    }
 };
   
 //=============================================================================
@@ -773,7 +773,7 @@ Scene_Title.prototype.createMcircles = function() {
 //=============================================================================
 function TitleMCircles() {
     this.initialize.apply(this, arguments);
-};
+}
 
 TitleMCircles.prototype = Object.create(Sprite.prototype);
 TitleMCircles.prototype.constructor = TitleMCircles;
@@ -785,7 +785,7 @@ TitleMCircles.prototype.initialize = function(index) {
     Sprite.prototype.initialize.call(this);
 	this._index = index;
 	this._enabled = String(Moghunter.titleMcircles_V[this._index]) == "true" ? true : false;
-    if (this._enabled) {this.create_mcircles()};
+    if (this._enabled) {this.create_mcircles()}
 };
   
 //==============================
@@ -814,7 +814,7 @@ TitleMCircles.prototype.updateMcirclePulse = function() {
 	    this.updateMcirclePulseM1();
 	} else {0
 	    this.updateMcirclePulseM2();
-	};
+	}
 	this.scale.y = this.scale.x;
 };
   
@@ -830,7 +830,7 @@ TitleMCircles.prototype.updateMcirclePulseM1 = function() {
 	} else {
 		this.p[1] = 0;
 		this.scale.x = 1.00;
-	};	
+	}	
 };   
   
 //==============================
@@ -840,15 +840,15 @@ TitleMCircles.prototype.updateMcirclePulseM2 = function() {
 	this.scale.x += 0.003;
 	if (this.p[1] === 0) {
 		this.opacity += 4;
-		if (this.opacity >= 255) {this.p[1] = 1};
+		if (this.opacity >= 255) {this.p[1] = 1}
 	} else {
 	    this.opacity -= 2;
-	};
+	}
     if (this.opacity <= 0) {
 		this.p[1] = 0;
 		this.scale.x = 1.00;
 		this.opacity = 0;	
-	};
+	}
 };     
   
 //==============================
@@ -856,8 +856,8 @@ TitleMCircles.prototype.updateMcirclePulseM2 = function() {
 //==============================
 TitleMCircles.prototype.update_magic_circle = function() {
 	this.rotation += this.r;
-	if (this.p[0] < 2) {this.opacity += 2};
-	if (this.p[0] > 0) {this.updateMcirclePulse()};
+	if (this.p[0] < 2) {this.opacity += 2}
+	if (this.p[0] > 0) {this.updateMcirclePulse()}
 };    
   
 //==============================
@@ -865,5 +865,5 @@ TitleMCircles.prototype.update_magic_circle = function() {
 //==============================
 TitleMCircles.prototype.update = function() {
     Sprite.prototype.update.call(this);
-	if (this._enabled) {this.update_magic_circle()};
+	if (this._enabled) {this.update_magic_circle()}
 };

@@ -747,7 +747,7 @@
 		Moghunter.titleBackAF[i] = Number(Moghunter.parameters['L' + String(i + 1) + " Frames"] || 4);
 		Moghunter.titleBackAS[i] = Number(Moghunter.parameters['L' + String(i + 1) + " Animation Speed"] || 20);
 		Moghunter.titleBackB[i] = Number(Moghunter.parameters['L' + String(i + 1) + " Blend Mode"] || 0);
-	};
+	}
 
 //=============================================================================
 // ■■■ Scene Title ■■■
@@ -759,7 +759,7 @@
 var _mog_backtitle_create = Scene_Title.prototype.create;
 Scene_Title.prototype.create = function() {
 	_mog_backtitle_create.call(this);
-	if (this._titleField1) {this._titleField1.children.sort((a, b) => a.z - b.z)};
+	if (this._titleField1) {this._titleField1.children.sort((a, b) => a.z - b.z)}
 	if (this._titleField3) {this._titleField3.children.sort((a, b) => a.z - b.z)}
 };
 
@@ -771,7 +771,7 @@ Scene_Title.prototype.createBackground = function() {
 	_mog_title_background_effects_createBackground.call(this);
     this._backSprite1.visible = false;
     this._backSprite2.visible = false;    
-	if (!this._titleField1) {this.createTitleField1()};
+	if (!this._titleField1) {this.createTitleField1()}
 	this.createBackgroundEX();
 };
 
@@ -781,7 +781,7 @@ Scene_Title.prototype.createBackground = function() {
 var _mog_title_background_effects_createCommandWindow = Scene_Title.prototype.createCommandWindow;
 Scene_Title.prototype.createCommandWindow = function() {
 	_mog_title_background_effects_createCommandWindow.call(this);
-	if (!this._titleField3) {this.createTitleField3()};
+	if (!this._titleField3) {this.createTitleField3()}
     this.createTitleText();
 };
   
@@ -798,8 +798,8 @@ Scene_Title.prototype.update = function() {
 // * update Title background
 //==============================
 Scene_Title.prototype.updateTitlebackground = function() {
-    if (this._titleTextSprite) {this.updateTitleText()};
-    if (this._backgroundEX && this._backWave) {this.updateBackWave()};
+    if (this._titleTextSprite) {this.updateTitleText()}
+    if (this._backgroundEX && this._backWave) {this.updateBackWave()}
 }; 
 
 //==============================
@@ -835,7 +835,7 @@ Scene_Title.prototype.createTitleText = function() {
 	if (Moghunter.titleText_Zoom == "true") {
     	this._titleTextSprite.scale.x = Moghunter.titleText_ZoomValue;
 	    this._titleTextSprite.fadeSpeed = 3;
-	};
+	}
 	this._titleField3.addChild(this._titleTextSprite);
 };
 
@@ -852,8 +852,8 @@ Scene_Title.prototype.updateTitleText = function() {
 		 this._titleTextSprite.scale.x -= 0.01;
 		 if (this._titleTextSprite.scale.x < 1.00) {
 		     this._titleTextSprite.scale.x = 1.00;	
-		 };
-	 };
+		 }
+	 }
 	 this._titleTextSprite.scale.y = this._titleTextSprite.scale.x;
 };
 
@@ -883,7 +883,7 @@ Scene_Title.prototype.createBackgroundEX = function() {
 		 this._backgroundEX[i] = new TitleBackground(i,this._backData);
 		 this._backgroundEX[i].zIndex = i;
 		 this._titleField1.addChild(this._backgroundEX[i]);
-    };
+    }
 	this._ba = [0,0,0,0];
 	this._backWave = String(Moghunter.titleBackW) == "true" ? true : false;
 	this._backWaveSpd = Number(Moghunter.titleBackWS);
@@ -940,7 +940,7 @@ Scene_Title.prototype.updateBackWave = function() {
 	  this._titleField1.x += this._ba[0];
 	  this._titleField1.y += this._ba[1];
 	  this._ba[2]--;
-	  if (this.needRefreshTfl()) {this.refreshTfl()};
+	  if (this.needRefreshTfl()) {this.refreshTfl()}
 	  this.checkTfl();
 };
 
@@ -948,7 +948,7 @@ Scene_Title.prototype.updateBackWave = function() {
 // * need Refresh T
 //==============================
 Scene_Title.prototype.needRefreshTfl = function() {
-	  if (this._ba[2] <= 0) {return true};
+	  if (this._ba[2] <= 0) {return true}
 	  return false
 };
 
@@ -956,10 +956,10 @@ Scene_Title.prototype.needRefreshTfl = function() {
 // * Check Tfl
 //==============================
 Scene_Title.prototype.checkTfl = function() {
-	  if (this._titleField1.x < this.xl1()) {this.refreshTfl();this._titleField1.x = this.xl1()}; 
-	  if (this._titleField1.x > this.xl2()) {this.refreshTfl();this._titleField1.x = this.xl2()};
-	  if (this._titleField1.y < this.yl1()) {this.refreshTfl();this._titleField1.y = this.yl1()}; 
-	  if (this._titleField1.y > this.yl2()) {this.refreshTfl();this._titleField1.y = this.yl2()};	
+	  if (this._titleField1.x < this.xl1()) {this.refreshTfl();this._titleField1.x = this.xl1()} 
+	  if (this._titleField1.x > this.xl2()) {this.refreshTfl();this._titleField1.x = this.xl2()}
+	  if (this._titleField1.y < this.yl1()) {this.refreshTfl();this._titleField1.y = this.yl1()} 
+	  if (this._titleField1.y > this.yl2()) {this.refreshTfl();this._titleField1.y = this.yl2()}	
 };
 
 //=============================================================================
@@ -967,7 +967,7 @@ Scene_Title.prototype.checkTfl = function() {
 //=============================================================================
 function TitleBackground() {
     this.initialize.apply(this, arguments);
-};
+}
 
 TitleBackground.prototype = Object.create(Sprite.prototype);
 TitleBackground.prototype.constructor = TitleBackground;
@@ -984,7 +984,7 @@ TitleBackground.prototype.initialize = function(index,data) {
 		this._wave = String(Moghunter.titleBackW) == "true" ? true : false;
 		this._mode = Number(Moghunter.titleBackX[this._index]) == 0 && Number(Moghunter.titleBackY[this._index]) == 0 ? 1 : 0;
 		this.createSprite();
-	};
+	}
 };
 
 //==============================
@@ -1034,7 +1034,7 @@ TitleBackground.prototype.frameSpeed = function() {
 //==============================
 TitleBackground.prototype.updateFrames = function() {
     this._anime[4]++;
-	if (this._anime[4] < this.frameSpeed()) {return};
+	if (this._anime[4] < this.frameSpeed()) {return}
 	this._anime[4] = 0;
 	this.refreshFrames();
 };
@@ -1044,7 +1044,7 @@ TitleBackground.prototype.updateFrames = function() {
 //==============================
 TitleBackground.prototype.refreshFrames = function() {
 	this._anime[1]++;
-	if (this._anime[1] >= this.maxframes()) {this._anime[1] = 0};	
+	if (this._anime[1] >= this.maxframes()) {this._anime[1] = 0}	
     this.setBitmap()
 };
 
@@ -1066,8 +1066,8 @@ TitleBackground.prototype.loadBitmap = function() {
 		for (var i = 0; i < Moghunter.titleBackAF[this._index]; i++) {
 		   var name = String(Moghunter.titleBackN[this._index]) + "_" + i;
 		   this._imgs[i] = ImageManager.loadTitle1(name);
-		};	   
-	};
+		}	   
+	}
 };
 
 //==============================
@@ -1091,8 +1091,8 @@ TitleBackground.prototype.createSprite = function() {
 		if (this._wave) {
 		    this._back.anchor.x = 0.5;
 		    this._back.anchor.y = 0.5;
-		};
-	};
+		}
+	}
 	this.setBitmap();
 	this._back._start = false;
 	this._back.org = [0,0];
@@ -1111,14 +1111,14 @@ TitleBackground.prototype.createSprite = function() {
 TitleBackground.prototype.getData = function() {
 	this._back._start = true;
     this.setCenter();
-	if (this.needFitScreen()) {	this.fitScreen()};
+	if (this.needFitScreen()) {	this.fitScreen()}
 };
 
 //==============================
 // * needFitScreen
 //==============================
 TitleBackground.prototype.needFitScreen = function() {
-	if (Moghunter.titleBackFitScreen != "true") {return false};
+	if (Moghunter.titleBackFitScreen != "true") {return false}
 	return true;
 };
 
@@ -1129,14 +1129,14 @@ TitleBackground.prototype.setCenter = function() {
 	this._back._start = true;
 	if (this._wave) {
 		this.setWave()
-	} else {;
+	} else {
 		if (this._mode === 0) {
 			this._back.move(0,0,Graphics.width,Graphics.height );
 		} else {
 			this._back.x = this._back.sx;
 			this._back.y = this._back.sy;	
-		};
-	};
+		}
+	}
 	this._back.org = [this._back.x,this._back.y];
 };
 
@@ -1161,7 +1161,7 @@ TitleBackground.prototype.setWaveCenter = function() {
 	} else {
       this._back.x = Graphics.width / 2;
       this._back.y = Graphics.height / 2;
-	};
+	}
 };
 
 //==============================
@@ -1170,10 +1170,10 @@ TitleBackground.prototype.setWaveCenter = function() {
 TitleBackground.prototype.fitScreen = function() {
 	if (this._back.bitmap.width < Graphics.width) {
     	this._back.scale.x = Graphics.width / this._back.bitmap.width;
-	};
+	}
 	if (this._back.bitmap.height < Graphics.height) {
 	    this._back.scale.y = Graphics.height / this._back.bitmap.height;
-	};
+	}
 };
 
 //==============================
@@ -1196,14 +1196,14 @@ TitleBackground.prototype.updateWave = function() {
 // * Update Background
 //==============================
 TitleBackground.prototype.updateBackground = function() {
-	if (this._back.t > 0) {this._back.t--;return};
+	if (this._back.t > 0) {this._back.t--;return}
 	this._back.opacity += 2;
     if (this._mode == 0) {
 		this.updateScroll();
 	} else {
-	    if (this._wave) {this.updateWave()};	
-	};
-	if (this.isAnimated()) {this.updateFrames()};
+	    if (this._wave) {this.updateWave()}	
+	}
+	if (this.isAnimated()) {this.updateFrames()}
 };
 
 //==============================
@@ -1213,9 +1213,9 @@ TitleBackground.prototype.update = function() {
     Sprite.prototype.update.call(this);
 	if (this._enable) {
 		if (!this._back._start) {
-			if (this._back.bitmap.isReady()) {this.getData()};
+			if (this._back.bitmap.isReady()) {this.getData()}
 		} else {
 			this.updateBackground();
-		};
-	};
+		}
+	}
 };

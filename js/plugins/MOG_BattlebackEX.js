@@ -274,7 +274,7 @@ Game_System.prototype.setBBEX = function(data,z) {
 // * bbex get ZIndex
 //==============================
 Game_System.prototype.bbexGetZIndex = function(zindex) {
-	if (zindex == "Front") {return 1};
+	if (zindex == "Front") {return 1}
 	return 0;
 }; 
 
@@ -283,7 +283,7 @@ Game_System.prototype.bbexGetZIndex = function(zindex) {
 //==============================
 Game_System.prototype.bbexGetBlend = function(blend) {
 	if (blend == "Additive") {return 1;
-	} else if (blend == "Multiply") {return 2};
+	} else if (blend == "Multiply") {return 2}
 	return 0;
 }; 
 
@@ -352,8 +352,8 @@ Spriteset_Battle.prototype.createLowerLayer = function() {
 Spriteset_Battle.prototype.refreshBBEX = function() {
 	$gameSystem._bbexRefresh = false;
 	for (var i = 0; i < $gameSystem._bbex.length; i++) {
-         if ($gameSystem._bbex[i] && !$gameSystem._bbex[i].enabled) {this.createBattleBack(i)};
-    };
+         if ($gameSystem._bbex[i] && !$gameSystem._bbex[i].enabled) {this.createBattleBack(i)}
+    }
 };
 
 //==============================
@@ -367,7 +367,7 @@ Spriteset_Battle.prototype.createBattleBack = function(index) {
 	    this._bbEX_field_1.addChild(this._bbEx_Sprite[i]);
 	} else {
 		this._bbEX_field_2.addChild(this._bbEx_Sprite[i]);
-	};
+	}
 	this._bbEX_field_1.children.sort((a, b) => a.z - b.z);
 	this._bbEX_field_2.children.sort((a, b) => a.z - b.z);
 };
@@ -376,7 +376,7 @@ Spriteset_Battle.prototype.createBattleBack = function(index) {
 // * updateBattleBack EX
 //==============================
 Spriteset_Battle.prototype.updateBattlebackEX = function() {
-   if ($gameSystem._bbexData.needRefresh) {this.refreshBBEX()};
+   if ($gameSystem._bbexData.needRefresh) {this.refreshBBEX()}
 };
 
 //==============================
@@ -385,7 +385,7 @@ Spriteset_Battle.prototype.updateBattlebackEX = function() {
 const _mog_bbex_spriteset_battle_update = Spriteset_Battle.prototype.update;
 Spriteset_Battle.prototype.update = function() {
     _mog_bbex_spriteset_battle_update.call(this);
-	if (this._bbEX_field_2) {this.updateBattlebackEX()};
+	if (this._bbEX_field_2) {this.updateBattlebackEX()}
 };
 
 //=============================================================================
@@ -393,7 +393,7 @@ Spriteset_Battle.prototype.update = function() {
 //=============================================================================
 function BattleBackEX() {
     this.initialize(...arguments);
-};
+}
 
 BattleBackEX.prototype = Object.create(TilingSprite.prototype);
 BattleBackEX.prototype.constructor = BattleBackEX;
@@ -462,7 +462,7 @@ BattleBackEX.prototype.adjustPositionBattleCamera = function() {
     } else {
 		var camWidth = this.width + (this.width * cRangeX);
 		var camHeight = this.height + (this.height * cRangeY);
-    };
+    }
 	const ratioX = camWidth / this.bitmap.width;
 	const ratioY = camHeight / this.bitmap.height;
 	this.scale.x = ratioX;
@@ -477,7 +477,7 @@ BattleBackEX.prototype.refreshBitmap = function() {
         this.bitmap =  ImageManager.loadBattleback1(this.fileName());
  	} else {
 		this.bitmap =  ImageManager.loadBattleback2(this.fileName());
-	};
+	}
 	this._loaded = false;	
 };
 
@@ -517,7 +517,7 @@ BattleBackEX.prototype.refreshBattleback = function() {
 		this.adjustPositionBattleCamera();
 	} else {
     	this.adjustPosition();
-	};
+	}
 };
 
 //==============================
@@ -529,7 +529,7 @@ BattleBackEX.prototype.updateFade = function() {
 		if (this.opacity <= 0) {
 			this._fadeAni.phase = 1;
 			this.refreshBitmap();
-		};
+		}
 	} else {
 		if (this.opacity < this.data().opacity) {
 			this.opacity += this.fadeSpeed();
@@ -537,9 +537,9 @@ BattleBackEX.prototype.updateFade = function() {
 				this.opacity = this.data().opacity;
 				this._fadeAni.enabled = false;
 				this._fadeAni.phase = 0
-			};
-		};
-	};
+			}
+		}
+	}
 };
 
 //==============================
@@ -560,22 +560,22 @@ BattleBackEX.prototype.updateBattleBack = function() {
 	this.x = this._baseX + this.camRateX();
 	this.y = this._baseY + this.camRateY();
 	if (Imported.MOG_BattleCamera) {
-    	if (!this.data().camWaveX) {this.x -= $gameTemp._battleCamera.waveX};
-	    if (!this.data().camWaveY) {this.y -= $gameTemp._battleCamera.waveY};
-	};
-	if ($gameSystem._bbex[this._index].needRefresh) {this.changeBattleBack()};
+    	if (!this.data().camWaveX) {this.x -= $gameTemp._battleCamera.waveX}
+	    if (!this.data().camWaveY) {this.y -= $gameTemp._battleCamera.waveY}
+	}
+	if ($gameSystem._bbex[this._index].needRefresh) {this.changeBattleBack()}
 	if (this.data().remove) {
 		this.opacity -= this.fadeSpeed();
 	} else if (this._fadeAni.enabled) {
 		this.updateFade();
-	};
+	}
 };
 
 //==============================
 // * cam Rate X
 //==============================
 BattleBackEX.prototype.camRateX = function() {
-    if ($gameTemp._bcamPos) {return $gameTemp._bcamPos[0] - ($gameTemp._bcamPos[0] * (this.data().camRate / 100))};
+    if ($gameTemp._bcamPos) {return $gameTemp._bcamPos[0] - ($gameTemp._bcamPos[0] * (this.data().camRate / 100))}
 	return 0;
 };
 
@@ -583,7 +583,7 @@ BattleBackEX.prototype.camRateX = function() {
 // * cam Rate Y
 //==============================
 BattleBackEX.prototype.camRateY = function() {
-    if ($gameTemp._bcamPos) {return $gameTemp._bcamPos[1] - ($gameTemp._bcamPos[1] * (this.data().camRate / 100))};
+    if ($gameTemp._bcamPos) {return $gameTemp._bcamPos[1] - ($gameTemp._bcamPos[1] * (this.data().camRate / 100))}
 	return 0;
 };
 
@@ -592,9 +592,9 @@ BattleBackEX.prototype.camRateY = function() {
 //==============================
 BattleBackEX.prototype.update = function() {
     TilingSprite.prototype.update.call(this);
-	if (!this.data()) {this.opacity -= 10;return};
-    if (!this._loaded && this.bitmap.isReady()) {this.refreshBattleback()};
-    if (this._loaded) {this.updateBattleBack()};
+	if (!this.data()) {this.opacity -= 10;return}
+    if (!this._loaded && this.bitmap.isReady()) {this.refreshBattleback()}
+    if (this._loaded) {this.updateBattleBack()}
 };
 
 })();

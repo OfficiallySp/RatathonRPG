@@ -199,7 +199,7 @@ var _mog_alias_bcam_wba_select = Window_BattleActor.prototype.select;
 Window_BattleActor.prototype.select = function(index) {
     _mog_alias_bcam_wba_select.call(this,index);
 	$gameTemp._bcam_target = [null,[0,0]];
-	if (this.actor(index)) {$gameTemp._bcam_target[0] = this.actor(index);};
+	if (this.actor(index)) {$gameTemp._bcam_target[0] = this.actor(index);}
 };
 
 //=============================================================================
@@ -223,7 +223,7 @@ var _mog_alias_batcam_wbe_select = Window_BattleEnemy.prototype.select;
 Window_BattleEnemy.prototype.select = function(index) {
     _mog_alias_batcam_wbe_select.call(this,index)
 	$gameTemp._bcam_target = [null,[0,0]];
-	if (this.enemy()) {$gameTemp._bcam_target[0] = this.enemy();};
+	if (this.enemy()) {$gameTemp._bcam_target[0] = this.enemy();}
 };
 
 //=============================================================================
@@ -252,17 +252,17 @@ BattleManager.startAction = function() {
      const subject = this._subject;
      const action = subject.currentAction();
 	 if (action) {
-		 if (this.needFocusUserFrontal(action)) {$gameTemp._bcam_target_turn[0] = this._subject};	 
-		 if (this.needCenterCam(action)) {$gameTemp._bcam_allTargets_turn = true};
-	 };
+		 if (this.needFocusUserFrontal(action)) {$gameTemp._bcam_target_turn[0] = this._subject}	 
+		 if (this.needCenterCam(action)) {$gameTemp._bcam_allTargets_turn = true}
+	 }
 };
 
 //==============================
 // * needFocusUserFrontal
 //==============================
 BattleManager.needFocusUserFrontal = function(action) {
-	 if ($gameSystem.isSideView()) {return false};
-     if (!this._subject.isEnemy()) {return false};	 
+	 if ($gameSystem.isSideView()) {return false}
+     if (!this._subject.isEnemy()) {return false}	 
 	 return true
 };
 
@@ -270,10 +270,10 @@ BattleManager.needFocusUserFrontal = function(action) {
 // * need Center Cam
 //==============================
 BattleManager.needCenterCam = function(action) {
-	 if (!$gameSystem.isSideView()) {return false};
-	 if (action.isForAll()) {return true};
-	 if (action.isForRandom()) {return false};
-     if (this._targets.length <= 1) {return false};	 
+	 if (!$gameSystem.isSideView()) {return false}
+	 if (action.isForAll()) {return true}
+	 if (action.isForRandom()) {return false}
+     if (this._targets.length <= 1) {return false}	 
 	 if (action.numRepeats() > 1) {return false}
 	 return true
 };
@@ -342,10 +342,10 @@ Sprite_Battler.prototype.updatePosition = function() {
 //==============================
 Sprite_Battler.prototype.updateBattleCameraPosition = function() {
 	$gameTemp._bcam_actor[0] = BattleManager.actor();
-	if ($gameTemp._bcam_target && $gameTemp._bcam_target[0] === this._battler) {this.update_focus_target()};
-	if ($gameTemp._bcam_target_turn && $gameTemp._bcam_target_turn[0] === this._battler) {this.update_focus_target_turn()};
-	if ($gameTemp._bcam_user && $gameTemp._bcam_user[0] === this._battler) {this.update_focus_user()};
-	if ($gameTemp._bcam_actor && $gameTemp._bcam_actor[0] === this._battler) {this.update_focus_actor()};
+	if ($gameTemp._bcam_target && $gameTemp._bcam_target[0] === this._battler) {this.update_focus_target()}
+	if ($gameTemp._bcam_target_turn && $gameTemp._bcam_target_turn[0] === this._battler) {this.update_focus_target_turn()}
+	if ($gameTemp._bcam_user && $gameTemp._bcam_user[0] === this._battler) {this.update_focus_user()}
+	if ($gameTemp._bcam_actor && $gameTemp._bcam_actor[0] === this._battler) {this.update_focus_actor()}
 };
 
 //==============================
@@ -356,7 +356,7 @@ Sprite_Battler.prototype.cam_th = function() {
 		  return this.y - (this._mainSprite.height / 2);
 	   } else {
           return this.y - (this.bitmap.height / 2);
-	   };
+	   }
 };
 
 //==============================
@@ -497,9 +497,9 @@ Spriteset_Battle.prototype.cam_center = function() {
 // * Need Center Cam
 //==============================
 Spriteset_Battle.prototype.needCenterCam = function() {
-	if ($gameTemp._bcam_allTargets) {return true};
-	if ($gameTemp._bcam_allTargets_turn) {return true};
-	if ($gameTemp._battleEnd) {return true};
+	if ($gameTemp._bcam_allTargets) {return true}
+	if ($gameTemp._bcam_allTargets_turn) {return true}
+	if ($gameTemp._battleEnd) {return true}
 	return false
 };
 
@@ -507,12 +507,12 @@ Spriteset_Battle.prototype.needCenterCam = function() {
 // * Update Cam Position
 //==============================
 Spriteset_Battle.prototype.update_cam_position= function() {
-	if (this._cWave.enabledX) {this.updateCameraWaveX()};
-	if (this._cWave.enabledY) {this.updateCameraWaveY()};	
-	if ($gameTemp._bcam_wait[0] > 0) {$gameTemp._bcam_wait[0]--};
-	if ($gameTemp._bcam_wait[1] > 0) {$gameTemp._bcam_wait[1]--};
-	if (this.needCenterCam()) {this.cam_center();return};
-    if ($gameTemp._bcam_wait[0] == 0) {this.updateFocus()};
+	if (this._cWave.enabledX) {this.updateCameraWaveX()}
+	if (this._cWave.enabledY) {this.updateCameraWaveY()}	
+	if ($gameTemp._bcam_wait[0] > 0) {$gameTemp._bcam_wait[0]--}
+	if ($gameTemp._bcam_wait[1] > 0) {$gameTemp._bcam_wait[1]--}
+	if (this.needCenterCam()) {this.cam_center();return}
+    if ($gameTemp._bcam_wait[0] == 0) {this.updateFocus()}
 };
 
 //==============================
@@ -520,7 +520,7 @@ Spriteset_Battle.prototype.update_cam_position= function() {
 //==============================
 Spriteset_Battle.prototype.updateFocus = function() {
 	this._sd = false
-	if ($gameTemp._bcam_user[2] > 0) {$gameTemp._bcam_user[2] -= 1};
+	if ($gameTemp._bcam_user[2] > 0) {$gameTemp._bcam_user[2] -= 1}
 	if ($gameTemp._bcam_target && $gameTemp._bcam_target[0]) {
 		if (!$gameSystem.isSideView() && $gameTemp._bcam_target[0].isActor()) {
 		  this._cam_X =  this._center[0] + this._baseSprite.x;
@@ -528,14 +528,14 @@ Spriteset_Battle.prototype.updateFocus = function() {
 	    } else { 
 		  this._cam_X = $gameTemp._bcam_target[1][0];
      	  this._cam_Y = $gameTemp._bcam_target[1][1];
-	    };
+	    }
     } else if (this.isCamUser()) {
 		  if (!$gameSystem.isSideView() && $gameTemp._bcam_user[0].isActor()) {
 			this.cam_center();
 		  } else {
 		    this._cam_X = $gameTemp._bcam_user[1][0];
      	    this._cam_Y = $gameTemp._bcam_user[1][1];
-		  };
+		  }
     } else if (this.isCamTarget()) {
 		  this._cam_X = $gameTemp._bcam_target_turn[1][0];
      	  this._cam_Y = $gameTemp._bcam_target_turn[1][1];
@@ -544,16 +544,16 @@ Spriteset_Battle.prototype.updateFocus = function() {
      	  this._cam_Y = $gameTemp._bcam_actor[1][1];		 
 	} else {
 		this.cam_center();
-	};	
+	}	
 };
 
 //==============================
 // * Is Cam User
 //==============================
 Spriteset_Battle.prototype.isCamUser = function() {
-	if (!$gameTemp._bcam_user) {return false};
-	if (!$gameTemp._bcam_user[0]) {return false};
-	if ($gameTemp._bcam_user[2] === 0) {return false};
+	if (!$gameTemp._bcam_user) {return false}
+	if (!$gameTemp._bcam_user[0]) {return false}
+	if ($gameTemp._bcam_user[2] === 0) {return false}
 	return true;
 };
 
@@ -561,9 +561,9 @@ Spriteset_Battle.prototype.isCamUser = function() {
 // * Is Cam Target
 //==============================
 Spriteset_Battle.prototype.isCamTarget = function() {
-	if (!$gameTemp._bcam_target_turn) {return false};
-	if (!$gameTemp._bcam_target_turn[0]) {return false};
-	if (!$gameSystem.isSideView() && $gameTemp._bcam_target_turn[0].isActor()) {return false};
+	if (!$gameTemp._bcam_target_turn) {return false}
+	if (!$gameTemp._bcam_target_turn[0]) {return false}
+	if (!$gameSystem.isSideView() && $gameTemp._bcam_target_turn[0].isActor()) {return false}
 	return true;
 };
 
@@ -571,9 +571,9 @@ Spriteset_Battle.prototype.isCamTarget = function() {
 // * Is Cam Actor
 //==============================
 Spriteset_Battle.prototype.isCamActor = function() {
-    if (!$gameSystem.isSideView()) {return false};
-	if (!$gameTemp._bcam_actor) {return false};
-	if (!$gameTemp._bcam_actor[0]) {return false};
+    if (!$gameSystem.isSideView()) {return false}
+	if (!$gameTemp._bcam_actor) {return false}
+	if (!$gameTemp._bcam_actor[0]) {return false}
 	return true;
 };
 
@@ -589,15 +589,15 @@ Spriteset_Battle.prototype.update_battle_camera = function() {
 			 nx = this._cam_limit[1] - this._cWave.maxRangeLimitX +  this._cWave.x 
 		 } else if (nx <= this._cam_limit[0] + this._cWave.maxRangeLimitX +  this._cWave.x) {
 			 nx = this._cam_limit[0] + this._cWave.maxRangeLimitX +  this._cWave.x 
-		 };
-	 };
+		 }
+	 }
 	 if (this._cWave.enabledY) {
 		 if (ny >= this._cam_limit[3] - this._cWave.maxRangeLimitY +  this._cWave.y) {
 			 ny = this._cam_limit[3] - this._cWave.maxRangeLimitY +  this._cWave.y;
 		 } else if (ny <= this._cam_limit[2] + this._cWave.maxRangeLimitY +  this._cWave.y) {
 			 ny = this._cam_limit[2] + this._cWave.maxRangeLimitY +  this._cWave.y 
-		 };
-	 };	 
+		 }
+	 }	 
      this._baseSprite.x = Math.floor(this.cam_move_to(this._baseSprite.x,nx,this.cam_speed(),0));
 	 this._baseSprite.y = Math.floor(this.cam_move_to(this._baseSprite.y,ny,this.cam_speed(),1));
 	 $gameTemp._bcamPos = [this._baseSprite.x,this._baseSprite.y];
@@ -613,7 +613,7 @@ Spriteset_Battle.prototype.updateBbCamMode = function(sprite,index) {
 		var rate = this._bbData[index][5]; 
 	} else {
 		var rate = 0;
-	};
+	}
 	sprite.x = -(this._baseSprite.x * (rate / 100)) + this._center[0];
 	sprite.y = -(this._baseSprite.y * (rate / 100)) + this._center[1];	
 };
@@ -622,15 +622,15 @@ Spriteset_Battle.prototype.updateBbCamMode = function(sprite,index) {
 // * Cam Move To
 //==============================
 Spriteset_Battle.prototype.cam_move_to = function(value,real_value,speed,type) {
-	if (value == real_value) {return value};
+	if (value == real_value) {return value}
 	var dnspeed = 5 + (Math.abs(value - real_value) / speed);
 	if (value > real_value) {value -= dnspeed;
-	    if (value < real_value) {value = real_value};}
+	    if (value < real_value) {value = real_value}}
     else if (value < real_value) {value  += dnspeed;
-    	if (value  > real_value) {value  = real_value};		
-    };
+    	if (value  > real_value) {value  = real_value}		
+    }
 	if (type === 0) {return Math.min(Math.max(value,this._cam_limit[0]),this._cam_limit[1]);
-	} else {return Math.min(Math.max(value,this._cam_limit[2]),this._cam_limit[3])};
+	} else {return Math.min(Math.max(value,this._cam_limit[2]),this._cam_limit[3])}
 };
 
 //==============================
@@ -642,14 +642,14 @@ Spriteset_Battle.prototype.updateCameraWaveX = function() {
 		if (this._cWave.rangeX <= -this._cWave.maxRangeX) {
 			this._cWave.rangeX = -this._cWave.maxRangeX
 			this._cWave.phaseX = 1
-		};
+		}
 	} else {
 		this._cWave.rangeX += this._cWave.speedX;
 		if (this._cWave.rangeX >= this._cWave.maxRangeX) {
 			this._cWave.rangeX = this._cWave.maxRangeX;
 			this._cWave.phaseX = 0
-		};
-	};
+		}
+	}
 	this._cWave.x -= this._cWave.rangeX;
 };
 
@@ -662,14 +662,14 @@ Spriteset_Battle.prototype.updateCameraWaveY = function() {
 		if (this._cWave.rangeY <= -this._cWave.maxRangeY) {
 			this._cWave.rangeY = -this._cWave.maxRangeY
 			this._cWave.phaseY = 1
-		};
+		}
 	} else {
 		this._cWave.rangeY += this._cWave.speedY;
 		if (this._cWave.rangeY >= this._cWave.maxRangeY) {
 			this._cWave.rangeY = this._cWave.maxRangeY;
 			this._cWave.phaseY = 0;
-		};
-	};
+		}
+	}
 	this._cWave.y -= this._cWave.rangeY;
 };
 
@@ -682,16 +682,16 @@ Spriteset_Battle.prototype.updateBcamMisc = function() {
 	if (this._sprtField1) {
 		this._sprtField1.x = cx;
 		this._sprtField1.y = cy;
-	};
+	}
 	if (this._sprtField2) {
 		this._sprtField2.x = cx;
 		this._sprtField2.y = cy;
-	};	
+	}	
     if (Imported.MOG_HPGauge) {
 		this._hpField.x = cx;
 		this._hpField.y = cy;
-	};
-	if ($gameTemp._battleCamera.needRefreshData) {this.refreshCamWaveData()};
+	}
+	if ($gameTemp._battleCamera.needRefreshData) {this.refreshCamWaveData()}
 };
 
 //==============================
@@ -700,6 +700,6 @@ Spriteset_Battle.prototype.updateBcamMisc = function() {
 var _alias_mog_bcam_sprt_update = Spriteset_Battle.prototype.update;
 Spriteset_Battle.prototype.update = function() {
 	_alias_mog_bcam_sprt_update.call(this); 
-    if ($gameSystem._cam_data[0] && this._cam_limit) {this.update_battle_camera()};
+    if ($gameSystem._cam_data[0] && this._cam_limit) {this.update_battle_camera()}
 	this.updateBcamMisc();
 };

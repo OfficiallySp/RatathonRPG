@@ -86,7 +86,7 @@ Game_Battler.prototype.initMembers = function() {
 //==============================
 Game_Battler.prototype.setupAuraEffect = function() {
     this._auraEffect = {};
-	this._auraEffect.needRefresh = [true,true];;
+	this._auraEffect.needRefresh = [true,true];
 	this._auraEffect.mode = -1;
 	this._auraEffect.fileName = "";
 	this._auraEffect.z = 0;
@@ -117,7 +117,7 @@ Game_Battler.prototype.getAuraData = function() {
 			 this._auraEffect.opacity = Math.min(Math.max(Number(note_data[4]),0),255);
 			 this._auraEffect.blendMode = Math.min(Math.max(Number(note_data[5]),0),2);
 			 this._auraEffect.rotation = Number(note_data[6]);
-		 };
+		 }
 		 if (note_data[0].toLowerCase() == "particle effect"){
 			this._particlesEffect.mode = 0;
 			this._particlesEffect.z = Math.min(Math.max(Number(note_data[1]),0),1);
@@ -126,7 +126,7 @@ Game_Battler.prototype.getAuraData = function() {
 			this._particlesEffect.blendMode = Math.min(Math.max(Number(note_data[4]),0),2);
 			this._particlesEffect.sx = Number(note_data[5]);
 			this._particlesEffect.sy = Number(note_data[6]);
-		 };
+		 }
 	},this);
 };
 
@@ -148,8 +148,8 @@ Game_Enemy.prototype.transform = function(enemyId) {
 // * Notetags
 //==============================
 Game_Battler.prototype.notetags = function() {
-	if (this.isEnemy()) {return this.enemy().note.split(/[\r\n]+/)};
-	if (this.isActor()) {return this.actor().note.split(/[\r\n]+/)};
+	if (this.isEnemy()) {return this.enemy().note.split(/[\r\n]+/)}
+	if (this.isActor()) {return this.actor().note.split(/[\r\n]+/)}
 };
 
 //=============================================================================
@@ -177,7 +177,7 @@ Spriteset_Battle.prototype.createAuraSprite = function(index) {
 	   this._auraSprite[index][i] = new SpriteAura(index);
 	   this._auraSprite[index][i].z = index;
 	   this._battleField.addChild(this._auraSprite[index][i]);
-   };
+   }
 };
 
 //==============================
@@ -188,7 +188,7 @@ Spriteset_Battle.prototype.addSpriteDataAura = function() {
          var sprite = this._enemySprites[i];
 		 this._auraSprite[0][i].addSprite(sprite);
 		 this._auraSprite[1][i].addSprite(sprite);
-    };
+    }
 };
 
 //=============================================================================
@@ -196,7 +196,7 @@ Spriteset_Battle.prototype.addSpriteDataAura = function() {
 //=============================================================================
 function SpriteAura() {
     this.initialize.apply(this, arguments);
-};
+}
 
 SpriteAura.prototype = Object.create(Sprite.prototype);
 SpriteAura.prototype.constructor = SpriteAura;
@@ -230,12 +230,12 @@ SpriteAura.prototype.battler = function() {
 // * can Update Aura
 //==============================
 SpriteAura.prototype.canUpdateAura = function() {
-    if (!this._sprite) {return false};
-	if (!this._sprite.bitmap) {return false};	
-	if (!this.battler()) {return false};
+    if (!this._sprite) {return false}
+	if (!this._sprite.bitmap) {return false}	
+	if (!this.battler()) {return false}
 	if (Imported.MOG_EmergeMotion) {
-	    if (this.battler()._emergeMotion.enabled) {return false};
-	};	
+	    if (this.battler()._emergeMotion.enabled) {return false}
+	}	
     return true; 
 };
 
@@ -245,13 +245,13 @@ SpriteAura.prototype.canUpdateAura = function() {
 SpriteAura.prototype.removeSprites = function() {
     if (this._auraSprite) {
 		 this.removeChild(this._auraSprite)
-	};
+	}
 	if (this._particles) {
 	   for (var i = 0; i < this._particles.length; i++) {
 		   this.removeChild(this._particles[i]);
 		   this._particles[i] = null;
-	   };
-	};
+	   }
+	}
 	this._auraSprite = null;
 	this._particles = null;
 };
@@ -279,10 +279,10 @@ SpriteAura.prototype.needGetData = function() {
 SpriteAura.prototype.refreshAuraSprites = function() {
     if (this.battler()._auraEffect.mode >= 0 && this._zIndex == this.battler()._auraEffect.z) {
 		this.createAuraSprite();
-	};
+	}
 	if (this.battler()._particlesEffect.power > 0 && this._zIndex == this.battler()._particlesEffect.z) {
 		this.createParticles();
-	};
+	}
 };
 
 //==============================
@@ -302,16 +302,16 @@ SpriteAura.prototype.createAuraSprite = function() {
 			var w = this._sprite.bitmap.width / 4;
 			var h = this._sprite.bitmap.height;
 		    this._auraSprite.setFrame(0,0,w,h)	
-		};
+		}
 	} else {
 		var fileName = (this.battler()._auraEffect.fileName);
 		if ($gameSystem.isSideView()) {
 		    var img = ImageManager.loadSvEnemy(fileName);
 		} else {
 		    var img = ImageManager.loadEnemy(fileName); 
-		};
+		}
   		this._auraSprite.bitmap = img;
-	};
+	}
 	this.addChild(this._auraSprite); 
 	if (this.battler()._auraEffect.mode == 1) {
 		var s = Math.randomInt(30) * 0.01;
@@ -319,7 +319,7 @@ SpriteAura.prototype.createAuraSprite = function() {
 	} else if (this.battler()._auraEffect.mode == 2) {
 		this._auraSprite.scale.x = Math.randomInt(80) * 0.01;
 		this._auraSprite.opacity = 0;
-	};
+	}
 };
 
 //==============================
@@ -339,7 +339,7 @@ SpriteAura.prototype.updateAuraAnimation = function() {
 		this.updateAuraAnimation1(); 
 	} else if (this.battler()._auraEffect.mode == 2) {
 		this.updateAuraAnimation2(); 
-	};
+	}
 };
 
 //==============================
@@ -348,11 +348,11 @@ SpriteAura.prototype.updateAuraAnimation = function() {
 SpriteAura.prototype.updateAuraAnimation1 = function() {
 	if (this._auraSprite.animation[0] == 0) {
 		this._auraSprite.scale.x += 0.005;
-		if (this._auraSprite.scale.x >= 1.30) {this._auraSprite.scale.x = 1.30;this._auraSprite.animation[0] = 1};	
+		if (this._auraSprite.scale.x >= 1.30) {this._auraSprite.scale.x = 1.30;this._auraSprite.animation[0] = 1}	
 	} else {
 		this._auraSprite.scale.x -= 0.005;
-		if (this._auraSprite.scale.x <= 1.00) {this._auraSprite.scale.x = 1.00;this._auraSprite.animation[0] = 0};	
-	};
+		if (this._auraSprite.scale.x <= 1.00) {this._auraSprite.scale.x = 1.00;this._auraSprite.animation[0] = 0}	
+	}
 };
 
 //==============================
@@ -367,8 +367,8 @@ SpriteAura.prototype.updateAuraAnimation2 = function() {
 		if (this._auraSprite.opacity <= 0) {
 			this._auraSprite.scale.x = 0.50;
 			this._auraSprite.scale.opacity = 0;
-		};
-    };
+		}
+    }
 };
 
 //==============================
@@ -377,7 +377,7 @@ SpriteAura.prototype.updateAuraAnimation2 = function() {
 SpriteAura.prototype.updateAuraSprite = function() {
     if (this._auraSprite.org[0] == -1 && this._auraSprite.bitmap && this._auraSprite.bitmap.isReady()) {
 	   this.getDataAuraSprite();
-	};
+	}
 	this.updateAuraAnimation();
 	this._auraSprite.x = this._auraSprite.org[0];
 	this._auraSprite.y = this._auraSprite.org[1];
@@ -396,8 +396,8 @@ SpriteAura.prototype.createParticles = function() {
 		 if ($gameSystem.isSideView()) {
 		    var img = ImageManager.loadSvEnemy(fileName, 0);
 		 } else {
-		    var img = ImageManager.loadEnemy(fileName, 0); ; 
-		 };		 
+		    var img = ImageManager.loadEnemy(fileName, 0);  
+		 }		 
 		 this._particles[i].bitmap = img;
 		 this._particles[i].z = this._zIndex + i;
 		 this._particles[i].anchor.x = 0.5;
@@ -410,7 +410,7 @@ SpriteAura.prototype.createParticles = function() {
 		 this._particles[i].needGetData = true;
 		 this.addChild(this._particles[i]);
 		 this.refreshParticles(this._particles[i],true)
-	};
+	}
 };
 
 //==============================
@@ -418,7 +418,7 @@ SpriteAura.prototype.createParticles = function() {
 //==============================
 SpriteAura.prototype.isEnemyPose = function() {
    if (!Imported.MOG_EnemyPoses) {return false}
-   if (!this._sprite._battler.isBPose()) {return false};
+   if (!this._sprite._battler.isBPose()) {return false}
    return true
 };
 
@@ -436,7 +436,7 @@ SpriteAura.prototype.refreshParticles = function(sprite,initial) {
 // * need Refresh Particles
 //==============================
 SpriteAura.prototype.needRefreshParticles = function(sprite) {
-    if (sprite.opacity <= 0) {return true};
+    if (sprite.opacity <= 0) {return true}
     return false;
 };
 
@@ -444,10 +444,10 @@ SpriteAura.prototype.needRefreshParticles = function(sprite) {
 // * need Fade Particles
 //==============================
 SpriteAura.prototype.needFadeParticles = function(sprite) {
-    if (sprite.x < -sprite.limitX) {return true};
-	if (sprite.x > sprite.limitX) {return true};
-    if (sprite.y < -sprite.limitY) {return true};
-	if (sprite.y > 10) {return true};	
+    if (sprite.x < -sprite.limitX) {return true}
+	if (sprite.x > sprite.limitX) {return true}
+    if (sprite.y < -sprite.limitY) {return true}
+	if (sprite.y > 10) {return true}	
     return false;
 };
 
@@ -465,15 +465,15 @@ SpriteAura.prototype.getDataParticles = function(sprite) {
 // * update Particles
 //==============================
 SpriteAura.prototype.updateParticles = function(sprite) {
-	if (sprite.needGetData && this._sprite.bitmap.isReady()) {this.getDataParticles(sprite)};
+	if (sprite.needGetData && this._sprite.bitmap.isReady()) {this.getDataParticles(sprite)}
     sprite.x -= sprite.sx;
 	sprite.y -= sprite.sy; 
 	if (this.needFadeParticles(sprite)) {
 		sprite.opacity -= 5
 	} else {
 	    sprite.opacity += 15
-	};
-	if (this.needRefreshParticles(sprite)) {this.refreshParticles(sprite,false)};
+	}
+	if (this.needRefreshParticles(sprite)) {this.refreshParticles(sprite,false)}
 };
 
 //==============================
@@ -485,28 +485,28 @@ SpriteAura.prototype.updateBaseData = function() {
    this.scale.x = 1.00;
    this.scale.y = 1.00;
    if (this.battler().isDead()) {
-	   this.opacity -= 10;;
+	   this.opacity -= 10;
    } else {	   
        this.opacity = this._sprite.opacity;
-   };
+   }
    this.visible = this._sprite.visible;
    if (Imported.MOG_BattleCameraFrontal) {
 	   this.scale.x += this.battler().camScaleX();
 	   this.scale.y += this.battler().camScaleY();
-   };
+   }
 };
 
 //==============================
 // * update Aura
 //==============================
 SpriteAura.prototype.updateAura = function() {
-    if (this.needGetData()) {this.getData()};
-	if (this._auraSprite) {this.updateAuraSprite()};
+    if (this.needGetData()) {this.getData()}
+	if (this._auraSprite) {this.updateAuraSprite()}
 	if (this._particles) {
 		for (var i = 0; i < this._particles.length; i++) {
 		     this.updateParticles(this._particles[i])
-	    };
-	};
+	    }
+	}
 	this.updateBaseData();
 };
 
@@ -515,5 +515,5 @@ SpriteAura.prototype.updateAura = function() {
 //==============================
 SpriteAura.prototype.update = function() {
 	Sprite.prototype.update.call(this);
-   if (this.canUpdateAura()) {this.updateAura()};
+   if (this.canUpdateAura()) {this.updateAura()}
 };

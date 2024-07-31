@@ -118,8 +118,8 @@ Game_Battler.prototype.initMembers = function() {
 // * Notetags
 //==============================
 Game_Battler.prototype.notetags = function() {
-	if (this.isEnemy()) {return this.enemy().note.split(/[\r\n]+/)};
-	if (this.isActor()) {return this.actor().note.split(/[\r\n]+/)};
+	if (this.isEnemy()) {return this.enemy().note.split(/[\r\n]+/)}
+	if (this.isActor()) {return this.actor().note.split(/[\r\n]+/)}
 };	
 	
 //==============================
@@ -128,7 +128,7 @@ Game_Battler.prototype.notetags = function() {
 var _mog_colefct_gbattler_performCollapse = Game_Battler.prototype.performCollapse;
 Game_Battler.prototype.performCollapse = function() {
 	_mog_colefct_gbattler_performCollapse.call(this);
-	if (this.isEnemy()) {this.checkCollapseEffect()};
+	if (this.isEnemy()) {this.checkCollapseEffect()}
 };
 	
 //==============================
@@ -136,8 +136,8 @@ Game_Battler.prototype.performCollapse = function() {
 //==============================
 Game_Battler.prototype.checkCollapseEffect = function() {
 	 const animationID = this._collpaseData[1];
-	 if (animationID > 0) {$gameTemp.requestAnimation([this],animationID,true); this._collpaseData[0] = -1;this.performCollapseSoundMG()};	
-	if (this._collpaseData[0] == -1) {this.setDefaultCollapse()};
+	 if (animationID > 0) {$gameTemp.requestAnimation([this],animationID,true); this._collpaseData[0] = -1;this.performCollapseSoundMG()}	
+	if (this._collpaseData[0] == -1) {this.setDefaultCollapse()}
 };	
 	
 //==============================
@@ -148,12 +148,12 @@ Game_Battler.prototype.setDefaultCollapse = function() {
    if (coltype === -1) {
 	   this.performCollapseSoundMG();
 	   return;
-   };
+   }
    if (coltype === -2) {
 	   this._collpaseData[0] = Math.randomInt(7);	  
    } else {
 	   this._collpaseData[0] = coltype;
-   };
+   }
 };	
 	
 //==============================
@@ -167,7 +167,7 @@ Game_Battler.prototype.performCollapseSoundMG = function() {
     case 1:
         SoundManager.playBossCollapse1();
         break;
-    };
+    }
 };
 	
 //==============================
@@ -182,9 +182,9 @@ Game_Battler.prototype.loadCollapseNotetags = function() {
 		 } else if (note_data[0].toLowerCase() == "collapse animation"){
 			 var animation_id = Math.min(Math.max(Number(note_data[1]),0),2000);
 		     this._collpaseData[1] = animation_id;			 
-		 };
+		 }
 	},this);	
-	if (this._collpaseData[1] > 0) {this._collpaseData[0] = -1};
+	if (this._collpaseData[1] > 0) {this._collpaseData[0] = -1}
 };		
 	
 //=============================================================================
@@ -229,15 +229,15 @@ var _alias_mog_colefct_gaction_apply = Game_Action.prototype.apply;
 Game_Action.prototype.apply = function(target) {
 	 _alias_mog_colefct_gaction_apply.call(this,target);
 	 if (target.isDead() && this._item) {
-        if (target.isEnemy()) {this.setCollapseEffect(target)};
-	 };
+        if (target.isEnemy()) {this.setCollapseEffect(target)}
+	 }
 };	
 	
 //==============================
 // * Set Collapse Effect
 //==============================
 Game_Action.prototype.setCollapseEffect = function(target) {
-    if (!this._item || !this._item.object()) {return};
+    if (!this._item || !this._item.object()) {return}
 	var item_notes = this._item.object().note.split(/[\r\n]+/);
     item_notes.forEach(function(note) {
          var note_data = note.split(' : ')
@@ -247,9 +247,9 @@ Game_Action.prototype.setCollapseEffect = function(target) {
 		 } else if (note_data[0].toLowerCase() == "collapse animation"){
 			 var animation_id = Math.min(Math.max(Number(note_data[1]),0),2000);
 		     target._collpaseData[1] = animation_id;			 
-		 };
+		 }
 	},this);
-	if (target._collpaseData[1] > 0) {target._collpaseData[0] = -1};
+	if (target._collpaseData[1] > 0) {target._collpaseData[0] = -1}
 };	
 	
 //=============================================================================
@@ -262,7 +262,7 @@ Game_Action.prototype.setCollapseEffect = function(target) {
 var _mog_colefct_sprEnemy_setBattler = Sprite_Enemy.prototype.setBattler;
 Sprite_Enemy.prototype.setBattler = function(battler) {
     _mog_colefct_sprEnemy_setBattler.call(this,battler)
-	if (this.isEnemyP()) {this._colpsBitmap = this.bitmap};
+	if (this.isEnemyP()) {this._colpsBitmap = this.bitmap}
 };	
 	
 //==============================
@@ -271,7 +271,7 @@ Sprite_Enemy.prototype.setBattler = function(battler) {
 var _mog_cefc_sprtenemy_update = Sprite_Enemy.prototype.update;
 Sprite_Enemy.prototype.update = function() {
 	_mog_cefc_sprtenemy_update.call(this);
-	if (this._spriteCol != null) {this.setFrame(0,0,0,0)};
+	if (this._spriteCol != null) {this.setFrame(0,0,0,0)}
 };
 
 //==============================
@@ -279,7 +279,7 @@ Sprite_Enemy.prototype.update = function() {
 //==============================
 var _mog_cefc_sprtenmy_updateCollapse = Sprite_Enemy.prototype.updateCollapse;
 Sprite_Enemy.prototype.updateCollapse = function() {
-	if (this._battler._collpaseData[0] != -1 && this._battler._collpaseData[1] <= 0) {this.updateCollapseEffects(); return};
+	if (this._battler._collpaseData[0] != -1 && this._battler._collpaseData[1] <= 0) {this.updateCollapseEffects(); return}
 	_mog_cefc_sprtenmy_updateCollapse.call(this)
 };
 
@@ -300,9 +300,9 @@ Sprite_Battler.prototype.initMembers = function() {
 // * is Enemy P
 //==============================
 Sprite_Battler.prototype.isEnemyP = function() {
-   if (!this._battler) {return false};
-   if (!Imported.MOG_EnemyPoses) {return false};
-   if (!this._battler.isBPose()) {return false};
+   if (!this._battler) {return false}
+   if (!Imported.MOG_EnemyPoses) {return false}
+   if (!this._battler.isBPose()) {return false}
    return true;
 };
 
@@ -340,8 +340,8 @@ Sprite_Battler.prototype.removeCollapseEffects = function() {
 		 for (var i = 0; i < this._spriteCol.length; i++) {
 			  this.removeChild(this._spriteCol[i]);
 			  this._spriteCol[i] = null;
-		 };		 
-	 };	 
+		 }		 
+	 }	 
 	 this.loadPreCollapse();
 	 this.revertToNormal();
 	 this.opacity = 0;
@@ -354,18 +354,18 @@ Sprite_Battler.prototype.removeCollapseEffects = function() {
 // * setup Collapse Effects
 //==============================
 Sprite_Battler.prototype.setupCollapseEffect = function() {
-	 if (Imported.MOG_BattlerMotion && this._battler) {this._battler.clearBdamage(0)};
-	 if (this._stateIconSprite) {this._stateIconSprite.visible = false};
+	 if (Imported.MOG_BattlerMotion && this._battler) {this._battler.clearBdamage(0)}
+	 if (this._stateIconSprite) {this._stateIconSprite.visible = false}
 	 if (this.collapseType() < 4 || this.collapseType() > 7) {
-        if (this._colpsBitmap) {this.bitmap = this._colpsBitmap;};
+        if (this._colpsBitmap) {this.bitmap = this._colpsBitmap;}
 	 } else { 
 	    this._collapseMode = true;
-	 };
+	 }
 	 this._effectDuration = 400;
 	 this._collEffectWait = 1;
 	 if (Imported.MOG_FlashDamage) {
          this._collEffectWait = $gameTemp._flashDamage ? 22 : 1;
-	 };
+	 }
 	 this.recordPreCollapse();	 
      if (this.collapseType() == -1) {		 
 	 } else if (this.collapseType() <= 1) {
@@ -381,7 +381,7 @@ Sprite_Battler.prototype.setupCollapseEffect = function() {
 		 this.setupColSliceVert();
 	 } else if (this.collapseType() === 10) {
 		 this.setupColStone();			  	 
-	 };
+	 }
 };
 
 //==============================
@@ -421,8 +421,8 @@ Sprite_Battler.prototype.setupColShatterPoint = function() {
 		 this._spriteCol[i].y = yi + y;
 		 this._spriteCol[i].setFrame(x + x2,y,frag_size,frag_size);
 		 this.addChild(this._spriteCol[i]);
-		 if (this._spriteCol[i].y > 0) {break};	 
-	 };
+		 if (this._spriteCol[i].y > 0) {break}	 
+	 }
 };
 
 //==============================
@@ -436,13 +436,13 @@ Sprite_Battler.prototype.updateCollapseShatterPoint= function() {
 				this._spriteCol[i].x -= this._spriteCol[i].sx; 
 			} else {
 				this._spriteCol[i].x += this._spriteCol[i].sx;
-			};
-		};
+			}
+		}
 		this._spriteCol[i].y -= this._spriteCol[i].sx;
 		this._spriteCol[i].opacity -= this._spriteCol[i].op;
-        if (this._spriteCol[i].opacity > 0) {coldone = false};
-	};
-	if (coldone) {this.removeCollapseEffects()};
+        if (this._spriteCol[i].opacity > 0) {coldone = false}
+	}
+	if (coldone) {this.removeCollapseEffects()}
 };
 
 //==============================
@@ -465,8 +465,8 @@ Sprite_Battler.prototype.setupColShatterLine = function() {
 		 this._spriteCol[i].y = yi + y;
 		 this._spriteCol[i].setFrame(x2,y,this.width,frag_size);
 		 this.addChild(this._spriteCol[i]);
-		 if (this._spriteCol[i].y > 0) {break};
-	 };
+		 if (this._spriteCol[i].y > 0) {break}
+	 }
 };
 
 //==============================
@@ -480,13 +480,13 @@ Sprite_Battler.prototype.updateCollapseShatterLine= function() {
 		   d = d === 0 ? 1 : 0;   
 		   if (d === 0) {this._spriteCol[i].x -= this._spriteCol[i].sx;
 		   } else {this._spriteCol[i].x += this._spriteCol[i].sx;
-		   };
-		};
+		   }
+		}
 		this._spriteCol[i].y -= this._spriteCol[i].sx 
 		this._spriteCol[i].opacity -= this._spriteCol[i].op
-        if (this._spriteCol[i].opacity > 0) {coldone = false};
-	};
-	if (coldone) {this.removeCollapseEffects()};
+        if (this._spriteCol[i].opacity > 0) {coldone = false}
+	}
+	if (coldone) {this.removeCollapseEffects()}
 };
 
 //==============================
@@ -508,7 +508,7 @@ Sprite_Battler.prototype.setupColSliceHorz = function() {
 		 this.addChild(this._spriteCol[i]);
 		 this._spriteCol[i].sx = Math.floor(frag_size / 2);
 		 this._spriteCol[i].sp = (this._spriteCol[i].sx / 40) + 0.01;
-	 };
+	 }
 };
 
 //==============================
@@ -519,12 +519,12 @@ Sprite_Battler.prototype.updateCollapseSliceHorz = function() {
      if (this._spriteCol[0].x >= this._spriteCol[0].sx) {
 		  this._spriteCol[0].opacity -= 5;
 		  this._spriteCol[1].opacity -= 5;
-		  if (this._spriteCol[0].opacity <= 0) {coldone = true;};
+		  if (this._spriteCol[0].opacity <= 0) {coldone = true;}
 	 } else {
           this._spriteCol[0].x += this._spriteCol[0].sp;
 	      this._spriteCol[1].x -= this._spriteCol[1].sp;			 
-	 };
-	 if (coldone) {this.removeCollapseEffects()};
+	 }
+	 if (coldone) {this.removeCollapseEffects()}
 };
 
 //==============================
@@ -546,7 +546,7 @@ Sprite_Battler.prototype.setupColSliceVert = function() {
 		 this.addChild(this._spriteCol[i]);
 		 this._spriteCol[i].sx = Math.floor(frag_size / 2);
 		 this._spriteCol[i].sp = (this._spriteCol[i].sx / 40) + 0.01;
-	 };
+	 }
 };
 
 //==============================
@@ -557,12 +557,12 @@ Sprite_Battler.prototype.updateCollapseSliceVert = function() {
      if (this._spriteCol[0].y >= this._spriteCol[0].sx) {
 		  this._spriteCol[0].opacity -= 5;
 		  this._spriteCol[1].opacity -= 5;
-		  if (this._spriteCol[0].opacity <= 0) {coldone = true;};
+		  if (this._spriteCol[0].opacity <= 0) {coldone = true;}
 	 } else {
           this._spriteCol[0].y += this._spriteCol[0].sp;
 	      this._spriteCol[1].y -= this._spriteCol[1].sp;			 
-	 };
-	 if (coldone) {this.removeCollapseEffects()};
+	 }
+	 if (coldone) {this.removeCollapseEffects()}
 };
 
 //==============================
@@ -585,10 +585,10 @@ Sprite_Battler.prototype.updateColFadeZoom = function() {
 	    this.updateColFazeZoom3();		
 	} else {
 	   this.updateColFazeZoom4();
-	};
-	if (this.scale.x < 0) {this.scale.x = 0};
-	if (this.scale.y < 0) {this.scale.y = 0};
-	if (this.opacity === 0) {this.removeCollapseEffects()};
+	}
+	if (this.scale.x < 0) {this.scale.x = 0}
+	if (this.scale.y < 0) {this.scale.y = 0}
+	if (this.opacity === 0) {this.removeCollapseEffects()}
 };
 
 //==============================
@@ -620,7 +620,7 @@ Sprite_Battler.prototype.updateColFazeZoom3 = function() {
 		this.scale.x -= 0.10;
 		this.scale.y += 0.15;
 		this.opacity -= 5;
-	};
+	}
 };
 
 //==============================
@@ -655,12 +655,12 @@ Sprite_Battler.prototype.updateCollapseStone = function() {
 // * update Collapse Effects
 //==============================
 Sprite_Battler.prototype.updateCollapseEffects = function() {
-	if (!this._collData) {this.setupCollapseEffect()};
+	if (!this._collData) {this.setupCollapseEffect()}
     if (this._collEffectWait > 0) {
 		this._collEffectWait--
 		if (this._collEffectWait == 0) {this._battler.performCollapseSoundMG()}
 	    return;
-	};	
+	}	
 	if (this.collapseType() == -1) {
 		this.updateCollapseBase();
     } else if (this.collapseType() <= 1) {
@@ -676,5 +676,5 @@ Sprite_Battler.prototype.updateCollapseEffects = function() {
 		this.updateCollapseSliceVert();	
 	} else if (this.collapseType() === 10) {
 		this.updateCollapseStone();	
-	};
+	}
 };
