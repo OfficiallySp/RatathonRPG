@@ -108,12 +108,12 @@ Akea.BattleTeamSkill.VERSION = [1, 0, 3];
     Akea.BattleTeamSkill.TeamSkillJSON = [];
     Akea.BattleTeamSkill.TeamSkill = [];
     Akea.BattleTeamSkill.LearSkills = Akea.params['learnSkill'] == "true" ? true : false;
-    for (const teamSkill of Akea.BattleTeamSkill.TeamSkillGlobaConfigs) { Akea.BattleTeamSkill.TeamSkillJSON.push(JSON.parse(teamSkill)) };
+    for (const teamSkill of Akea.BattleTeamSkill.TeamSkillGlobaConfigs) { Akea.BattleTeamSkill.TeamSkillJSON.push(JSON.parse(teamSkill)) }
     for (const teamSkill of Akea.BattleTeamSkill.TeamSkillJSON) {
         Akea.BattleTeamSkill.TeamSkill.push({
             skill: parseInt(teamSkill.skill), members: JSON.parse(teamSkill.members).map(JSON.parse).map(a => a.map(parseInt)), baseSkill: JSON.parse(teamSkill.baseSkills).map(a => parseInt(a))
         })
-    };
+    }
 
     BattleManager.getAkeaTeamSkill = function () {
         return this._akeaTeamSkills;
@@ -131,7 +131,7 @@ Akea.BattleTeamSkill.VERSION = [1, 0, 3];
             for (const member of BattleManager.getAkeaTeamSkill().getTeam(this._subject)) {
                 this.endBattlerActions(member);
             }
-        };
+        }
         _akeaTeamSkill_BattleManager_endAction.call(this, ...arguments);
     };
 
@@ -162,7 +162,7 @@ Akea.BattleTeamSkill.VERSION = [1, 0, 3];
             membersCasting[n] = membersCasting[n].filter(member => _akeaTeamSkill_Game_BattlerBase_meetsSkillConditions.call(member, $dataSkills[newItem]));
             if (BattleManager.isTpb() && !membersCasting[n].some(member => member.isTpbCharged()))
                 return false;
-            if (membersCasting[n].length == 0) { return false };
+            if (membersCasting[n].length == 0) { return false }
         }
         return true;
     };
@@ -221,7 +221,7 @@ Akea.BattleTeamSkill.VERSION = [1, 0, 3];
             }
             let newItem = Akea.BattleTeamSkill.TeamSkill.filter(ts => ts.skill == skill.id)[0].baseSkill[n]
             membersCasting[n] = membersCasting[n].filter(member => _akeaTeamSkill_Game_BattlerBase_meetsSkillConditions.call(member, $dataSkills[newItem]));
-            if (membersCasting[n].length == 0) { return false };
+            if (membersCasting[n].length == 0) { return false }
             membersCasting[n] = membersCasting[n][0];
         }
         membersCasting = membersCasting.flat().sort(function compare(a, b) {
@@ -282,7 +282,7 @@ Akea.BattleTeamSkill.VERSION = [1, 0, 3];
         if (!item) { return false; }
         let canUse = true;
         if (BattleManager.getAkeaTeamSkill().hasMember(this)) {
-            if (BattleManager.isTpb() && BattleManager.getAkeaTeamSkill().hasMember(this)) { return true };
+            if (BattleManager.isTpb() && BattleManager.getAkeaTeamSkill().hasMember(this)) { return true }
             for (const member of BattleManager.getAkeaTeamSkill().getTeam(this)) {
                 canUse = canUse && _akeaTeamSkill_Game_BattlerBase_canUse.call(member, item);
             }
@@ -363,9 +363,9 @@ Akea.BattleTeamSkill.VERSION = [1, 0, 3];
         const team = BattleManager.getAkeaTeamSkill().getTeam(subject);
         //for (const member of team) { this.push("performActionStart", member, action) };
         this.push("waitForMovement");
-        for (const member of team) { this.push("performAction", member, action) };
-        for (const member of team) { this.push("showAnimation", member, targets.clone(), item.animationId) };
-        for (const member of team) { this.displayAction(member, item) };
+        for (const member of team) { this.push("performAction", member, action) }
+        for (const member of team) { this.push("showAnimation", member, targets.clone(), item.animationId) }
+        for (const member of team) { this.displayAction(member, item) }
     }
 
     Game_Action.prototype.isValid = function () {
@@ -401,7 +401,7 @@ Akea.BattleTeamSkill.VERSION = [1, 0, 3];
                 }
             }
         } while (param);
-        if (!obj.teamId) { obj.teamId = 1 };
+        if (!obj.teamId) { obj.teamId = 1 }
         if (actionName == "Team") {
             const subject = BattleManager.getAkeaTeamSkill().getTeam(this)[obj.teamId - 1]
             subject.initialTargets = this.initialTargets;
@@ -451,7 +451,7 @@ Akea.BattleTeamSkill.VERSION = [1, 0, 3];
         for (const teamSkill of Akea.BattleTeamSkill.TeamSkill) {
             let canLearn = true;
             for (const members of teamSkill.members) {
-                if (!$gameParty.members().some(actor => members.includes(actor.actorId()))) { canLearn = false };
+                if (!$gameParty.members().some(actor => members.includes(actor.actorId()))) { canLearn = false }
             }
             if (canLearn) {
                 for (const members of teamSkill.members) {

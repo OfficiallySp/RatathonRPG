@@ -308,7 +308,7 @@ ImageManager.loadAkea = function (filename) {
             }
         } else {
 			this._hudFront.opacity = 0;
-		};
+		}
     };
 
     Sprite_AkeaOrder.prototype.resetPosition = function () {

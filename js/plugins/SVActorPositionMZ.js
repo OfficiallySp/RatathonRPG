@@ -477,7 +477,7 @@
       y = $gameSystem.svActorY[index] || SVActorY[index];
     } else if (index < 100 && !!$gameSystem.svActorX[index]) {
       x = $gameSystem.svActorX[index];
-      if (!!$gameSystem.svActorY[index]) {
+      if ($gameSystem.svActorY[index]) {
         y = $gameSystem.svActorY[index];
       }
     }

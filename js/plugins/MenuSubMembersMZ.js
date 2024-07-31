@@ -287,7 +287,7 @@
     let y = lineHeight;
     let subMember;
     for (let i = 0; i < maxSubMember; i++) {
-      if (!!(subMember = this.subMember[i])) {
+      if (subMember = this.subMember[i]) {
         this.drawActorName(subMember, 44, y, width);
         this.drawActorCharacter(subMember, 24, y + 40);
         y += lineHeight;

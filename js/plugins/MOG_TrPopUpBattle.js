@@ -104,7 +104,7 @@ Game_Enemy.prototype.makeDropItems = function() {
 				return r;
 			}
 		}, []);
-    };
+    }
 };
 		
 //=============================================================================
@@ -116,7 +116,7 @@ Game_Enemy.prototype.makeDropItems = function() {
 //==============================
 var _mog_BMangr_gainDropItems = BattleManager.gainDropItems;
 BattleManager.gainDropItems = function() {
-	if ($gameTemp._trBatDropLock) {return};
+	if ($gameTemp._trBatDropLock) {return}
 	_mog_BMangr_gainDropItems.call(this);
 };
 
@@ -143,7 +143,7 @@ Scene_Map.prototype.initialize = function() {
 var _mog_trPopBattle_sprEnemy_updateCollapse = Sprite_Enemy.prototype.updateCollapse;
 Sprite_Enemy.prototype.updateCollapse = function() {
     _mog_trPopBattle_sprEnemy_updateCollapse.call(this);
-	if (this._effectDuration === 0 && !this._enemy._treasure.checked) {this.checkTreasurePopup()};
+	if (this._effectDuration === 0 && !this._enemy._treasure.checked) {this.checkTreasurePopup()}
 };
 
 //==============================
@@ -152,7 +152,7 @@ Sprite_Enemy.prototype.updateCollapse = function() {
 var _mog_trPopBattle_sprEnemy_updateBossCollapse = Sprite_Enemy.prototype.updateBossCollapse;
 Sprite_Enemy.prototype.updateBossCollapse = function() {
     _mog_trPopBattle_sprEnemy_updateBossCollapse.call(this);
-    if (this._effectDuration === 0 && !this._enemy._treasure.checked) {this.checkTreasurePopup()};
+    if (this._effectDuration === 0 && !this._enemy._treasure.checked) {this.checkTreasurePopup()}
 };
 
 //==============================
@@ -161,7 +161,7 @@ Sprite_Enemy.prototype.updateBossCollapse = function() {
 var _mog_trPopBattle_sprEnemy_updateInstantCollapse = Sprite_Enemy.prototype.updateInstantCollapse;
 Sprite_Enemy.prototype.updateInstantCollapse = function() {
     _mog_trPopBattle_sprEnemy_updateInstantCollapse.call(this);
-	if (this._effectDuration === 0 && !this._enemy._treasure.checked) {this.checkTreasurePopup()};
+	if (this._effectDuration === 0 && !this._enemy._treasure.checked) {this.checkTreasurePopup()}
 };
 
 //==============================
@@ -173,7 +173,7 @@ Sprite_Enemy.prototype.checkTreasurePopup = function() {
 	 if (this._enemy._treasure.item) {
 		 this._enemy._treasure.needPopup = true;
 		 $gameTemp._trBatNeedPopUp = true;
-	 };
+	 }
 };
 
 //=============================================================================
@@ -186,7 +186,7 @@ Sprite_Enemy.prototype.checkTreasurePopup = function() {
 var _mog_trPopupBat_sprBat_update = Spriteset_Battle.prototype.update;
 Spriteset_Battle.prototype.update = function() {
 	_mog_trPopupBat_sprBat_update.call(this);
-	if ($gameTemp._trBatNeedPopUp) {this.treasurePopupR()};
+	if ($gameTemp._trBatNeedPopUp) {this.treasurePopupR()}
 };
 
 //==============================
@@ -194,15 +194,15 @@ Spriteset_Battle.prototype.update = function() {
 //==============================
 Spriteset_Battle.prototype.treasurePopupR = function() {
 	$gameTemp._trBatNeedPopUp = false;
-	if (!this._enemiesTreasure) {this._enemiesTreasure = []};
+	if (!this._enemiesTreasure) {this._enemiesTreasure = []}
 	for (var i = 0; i < this._enemySprites.length; i++) {
 		 if (this._enemySprites[i]._enemy && this._enemySprites[i]._enemy._treasure.needPopup) {
 			 this._enemySprites[i]._enemy._treasure.needPopup = false;
 		     this._enemiesTreasure[i] = new SpriteEnemyTrP(this._enemySprites[i]);
 		     this._enemiesTreasure[i].z = this._enemySprites[i].z ? this._enemySprites[i].z + 1 : 2;
 		     this._battleField.addChild(this._enemiesTreasure[i]);
-		 };
-	};
+		 }
+	}
 };
 
 //=============================================================================
@@ -210,7 +210,7 @@ Spriteset_Battle.prototype.treasurePopupR = function() {
 //=============================================================================
 function SpriteEnemyTrP() {
     this.initialize.apply(this, arguments);
-};
+}
 
 SpriteEnemyTrP.prototype = Object.create(Sprite.prototype);
 SpriteEnemyTrP.prototype.constructor = SpriteEnemyTrP;
@@ -228,7 +228,7 @@ SpriteEnemyTrP.prototype.initialize = function(sprite) {
 	if ($gameTemp._trBatRealTimeDrop) {
 		$gameTemp._trBatDropLock = true;
 		this.gainDropItemsIcons();
-	};
+	}
 };
 
 //==============================
@@ -258,13 +258,13 @@ SpriteEnemyTrP.prototype.createIcon = function() {
 			 this._icons[i].anchor.y = 1;
 			 this.refreshIcons(this._icons[i]);
 			 this.addChild(this._icons[i]);
-		 };
-	};
+		 }
+	}
 	this._icons.sort(function(a, b){return b.intY-a.intY});
 	this.children.sort(function(a, b){return b.intY-a.intY});
 	for (var i = 0; i < this._icons.length; i++) {
 		 this.refreshWait(this._icons[i],i,this._icons.length);
-	};
+	}
 };
 
 //==============================
@@ -308,10 +308,10 @@ SpriteEnemyTrP.prototype.updateBounce = function(sprite) {
 	 if (sprite.ry >= 0) {
 		 sprite.ry = 0;
 		 sprite.dy *= -0.7;
-	 };
+	 }
 	 sprite.y = -sprite.intY + Math.round(sprite.ry);
-	 if (sprite.y < -sprite.intY) {sprite.x += sprite.sx};	
-	 if (sprite.y === -sprite.intY) {this.updateFade(sprite)}; 
+	 if (sprite.y < -sprite.intY) {sprite.x += sprite.sx}	
+	 if (sprite.y === -sprite.intY) {this.updateFade(sprite)} 
 };
 
 //==============================
@@ -319,7 +319,7 @@ SpriteEnemyTrP.prototype.updateBounce = function(sprite) {
 //==============================
 SpriteEnemyTrP.prototype.updateFloat= function(sprite) {
 	sprite.wait--;
-	if (sprite.wait > 0) {return};	
+	if (sprite.wait > 0) {return}	
     sprite.y -= 3
 	sprite.opacity -= 8; 
 };
@@ -332,7 +332,7 @@ SpriteEnemyTrP.prototype.updateAnimation= function(sprite) {
 	   this.updateFloat(sprite);
    } else {
        this.updateBounce(sprite);
-   };
+   }
 };
 
 //==============================
@@ -340,7 +340,7 @@ SpriteEnemyTrP.prototype.updateAnimation= function(sprite) {
 //==============================
 SpriteEnemyTrP.prototype.updateFade = function(sprite) {
 	sprite.wait--;
-	if (sprite.wait > 0) {return};
+	if (sprite.wait > 0) {return}
 	sprite.opacity -= 15;
 	sprite.scale.x -= 0.05
 	sprite.scale.y += 0.15
@@ -352,7 +352,7 @@ SpriteEnemyTrP.prototype.updateFade = function(sprite) {
 SpriteEnemyTrP.prototype.updateSprites = function(sprite) {
 	 this.visible = true;
      this.updateAnimation(sprite);
-	 if (sprite.opacity <= 0) {sprite.visible = false};
+	 if (sprite.opacity <= 0) {sprite.visible = false}
 };
 
 //==============================
@@ -364,7 +364,7 @@ SpriteEnemyTrP.prototype.update = function() {
 	this.y = this._sprite.y;
 	if (this._iconImg.isReady()) {
 		for (var i = 0; i < this._icons.length; i++) {
-			if (this._icons[i].visible) {this.updateSprites(this._icons[i])};
-		};
-	};
+			if (this._icons[i].visible) {this.updateSprites(this._icons[i])}
+		}
+	}
 };

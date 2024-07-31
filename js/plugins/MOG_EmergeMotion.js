@@ -78,9 +78,9 @@ Game_Temp.prototype.initialize = function() {
 // * need skip Battle Process
 //==============================
 Game_Temp.prototype.needSkipBattleProcessEM = function() {
-	if ($gameTemp._emerging[0]) {return true};
-	if ($gameTemp._emerging[1] > 0) {return true};
-	if ($gameTemp._emergingInt > 0) {return true};
+	if ($gameTemp._emerging[0]) {return true}
+	if ($gameTemp._emerging[1] > 0) {return true}
+	if ($gameTemp._emergingInt > 0) {return true}
     return false;
 };
 
@@ -122,8 +122,8 @@ Game_Battler.prototype.initMembers = function() {
 // * Notetags
 //==============================
 Game_Battler.prototype.notetags = function() {
-	if (this.isEnemy()) {return this.enemy().note.split(/[\r\n]+/)};
-	if (this.isActor()) {return this.actor().note.split(/[\r\n]+/)};
+	if (this.isEnemy()) {return this.enemy().note.split(/[\r\n]+/)}
+	if (this.isActor()) {return this.actor().note.split(/[\r\n]+/)}
 };
 
 //=============================================================================
@@ -148,7 +148,7 @@ Game_Enemy.prototype.emotSetup = function() {
 		 if (note_data[0].toLowerCase() == "emerge motion"){
 		     this._emergeMotion.enabled = true;
 		     this._emergeMotion.mode = Math.min(Math.max(Number(note_data[1]),0),9);
-		 };
+		 }
 	},this);
 };
 
@@ -169,9 +169,9 @@ var _mog_eMot_sBat_updateBattleProcess = Scene_Battle.prototype.updateBattleProc
 Scene_Battle.prototype.updateBattleProcess = function() {
 	if ($gameTemp.needSkipBattleProcessEM()) {
 		$gameTemp._emerging[1]--;
-		if ($gameTemp._emergingInt > 0) {$gameTemp._emergingInt--};
+		if ($gameTemp._emergingInt > 0) {$gameTemp._emergingInt--}
 		return;
-	};
+	}
 	_mog_eMot_sBat_updateBattleProcess.call(this);
 };
 
@@ -188,7 +188,7 @@ Spriteset_Battle.prototype.createEnemies = function() {
     for (var i = 0; i < this._enemySprites.length; i++) {
 		var sprtEnemy = this._enemySprites[i];
         sprtEnemy.setIndexEm(i);
-    };
+    }
 };
 
 //=============================================================================
@@ -219,7 +219,7 @@ var _mog_eMot_gbar_setBattler = Sprite_Enemy.prototype.setBattler;
 Sprite_Enemy.prototype.setBattler = function(battler) {
 	_mog_eMot_gbar_setBattler.call(this,battler);
 	$gameTemp._emerging = [false,false,false];
-    if (this._battler && this._battler._emergeMotion.enabled) {this.setupEMot()};
+    if (this._battler && this._battler._emergeMotion.enabled) {this.setupEMot()}
 };
 
 //==============================
@@ -326,10 +326,10 @@ Sprite_Enemy.prototype.setupEmotType = function() {
 		this._battler._emerge[6] = 700;	
 	} else if (this.emgMotion() == 10) {
         this.prepareEmgMotionAnimation();
-	};
+	}
 	if (this._battler._emergeMotion.mode != 6) {	
 	    this._battler._emerge[9] = 1.00 /  this._battler._emerge[6];
-	};
+	}
     this._battler._emergeMotion.needGetData = this.bitmap ? true : false;
 	$gameTemp._emerging[0] = [true,10];
 	this.visible = false;
@@ -356,7 +356,7 @@ Sprite_Enemy.prototype.prepareEmgMotionAnimation = function() {
 	   this.setFrame(0,0,0,0);
 	} else {
 	   this._battler._emerge[13] = false;
-    };
+    }
 };
  
 //==============================
@@ -367,12 +367,12 @@ Sprite_Enemy.prototype.updateBouncingEmot = function() {
 		  this.y += 25;
 		  if (this.y >= this._battler._emergeMotion.y) {
 			  this.y = this._battler._emergeMotion.y;
-		  };
-	  };
+		  }
+	  }
 	  if (this._battler._emergeMotion.anime1 === 0) {
 		  if (this.y === this._battler._emergeMotion.y) {
 			  this._battler._emergeMotion.anime1 = 1;  
-		  }; 
+		  } 
 	  } else if (this._battler._emergeMotion.anime1 === 1) {
 		  if (this._battler._emergeMotion.anime2 === 0) {
 			  if (this.scale.x < this._battler._emergeMotion.scaleX + 0.30) {
@@ -382,8 +382,8 @@ Sprite_Enemy.prototype.updateBouncingEmot = function() {
 					  this.scale.x = this._battler._emergeMotion.scaleX + 0.30;
 					  this.scale.y = this._battler._emergeMotion.scaleX - 0.30;  		
 					  this._battler._emergeMotion.anime2 = 1;		  
-				  };
-     		  };
+				  }
+     		  }
 		  } else {
 			  if (this.scale.x > this._battler._emergeMotion.scaleX) {
 				  this.scale.x -= 0.03;
@@ -392,19 +392,19 @@ Sprite_Enemy.prototype.updateBouncingEmot = function() {
 					  this.scale.x = this._battler._emergeMotion.scaleX;
 					  this.scale.y = this._battler._emergeMotion.scaleY;  		
 					  this._battler._emerge[13] = false;		  
-				  };
-     		  };			  
-		  };
-     };
+				  }
+     		  }			  
+		  }
+     }
 };
 
 //==============================
 // * need To Get Data
 //==============================
 Sprite_Enemy.prototype.needToGetData = function() {
-    if (this._battler._emergeMotion.needGetData) {return false};
-	if (!this.bitmap) {return false};
-	if (!this.bitmap.isReady()) {return false};
+    if (this._battler._emergeMotion.needGetData) {return false}
+	if (!this.bitmap) {return false}
+	if (!this.bitmap.isReady()) {return false}
 	return true;
 };
 
@@ -420,7 +420,7 @@ Sprite_Enemy.prototype.updatePositionEmot = function() {
 // * update Scale Emot
 //==============================
 Sprite_Enemy.prototype.updateScaleEmot = function() {
-	if (this._battler._emergeMotion.mode === 8) {return};
+	if (this._battler._emergeMotion.mode === 8) {return}
 	var zs = this._battler._emerge[9];
 	if (!zs) {return}
     if (this.scale.x != this._battler._emergeMotion.scaleX) {
@@ -428,27 +428,27 @@ Sprite_Enemy.prototype.updateScaleEmot = function() {
 			this.scale.x += zs
 			if (this.scale.x >= this._battler._emergeMotion.scaleX) {
 				this.scale.x = this._battler._emergeMotion.scaleX;
-			};
+			}
 		} else if (this.scale.x > this._battler._emergeMotion.scaleX) {
 			this.scale.x -= zs
 			if (this.scale.x <= this._battler._emergeMotion.scaleX) {
 				this.scale.x = this._battler._emergeMotion.scaleX;
-			};
-		};
-	};
+			}
+		}
+	}
 	if (this.scale.y != this._battler._emergeMotion.scaleY) {
 		if (this.scale.y < this._battler._emergeMotion.scaleY) {
 			this.scale.y += zs
 			if (this.scale.y >= this._battler._emergeMotion.scaleY) {
 				this.scale.y = this._battler._emergeMotion.scaleY;
-			};
+			}
 		} else if (this.scale.y > this._battler._emergeMotion.scaleY) {
 			this.scale.y -= zs
 			if (this.scale.y <= this._battler._emergeMotion.scaleY) {
 				this.scale.y = this._battler._emergeMotion.scaleY;
-			};
-		};		
-	};
+			}
+		}		
+	}
 };
 
 //==============================
@@ -463,8 +463,8 @@ Sprite_Enemy.prototype.updateFrameEm = function() {
 		this._battler._emergeMotion.frameCount -= this._battler._emerge[9];
 		if (this._battler._emergeMotion.frameCount <= 0) {
 			this.setFrame(0,0,cw,ch)
-		};
-	};
+		}
+	}
 };
 
 //==============================
@@ -473,7 +473,7 @@ Sprite_Enemy.prototype.updateFrameEm = function() {
 Sprite_Enemy.prototype.updateSwingEm = function() {
    if (this._battler._emergeMotion.anime2 === 0) {
        this._battler._emergeMotion.anime1++;
-	   if (this._battler._emergeMotion.anime1 < 6) {return};
+	   if (this._battler._emergeMotion.anime1 < 6) {return}
 	   this._battler._emergeMotion.anime1 = 0;
 	   this.scale.x = this.scale.x > 0 ? -this._battler._emergeMotion.scaleX : this._battler._emergeMotion.scaleX;
 	   this._battler._emergeMotion.anime3++;
@@ -481,10 +481,10 @@ Sprite_Enemy.prototype.updateSwingEm = function() {
 		   this._battler._emergeMotion.anime3 = 0;
 		   this._battler._emergeMotion.anime2 = 1; 
 		   this._battler._emergeMotion.y -= 100;
-	   };
+	   }
    } else if (this._battler._emergeMotion.anime2 === 1) {
        this._battler._emergeMotion.anime1++;
-	   if (this._battler._emergeMotion.anime1 < 20) {return};
+	   if (this._battler._emergeMotion.anime1 < 20) {return}
 	   this._battler._emergeMotion.anime1 = 0;
 	   if (this._battler._emergeMotion.anime3 === 0) {
 		   this._battler._emergeMotion.y += 100;
@@ -494,8 +494,8 @@ Sprite_Enemy.prototype.updateSwingEm = function() {
 		   this._battler._emergeMotion.anime3 = 2;
 		   this._battler._emerge[13] = false;
 	       this.y = this._battler._emergeMotion.y;	
-	   };
-   };
+	   }
+   }
 };
 
 //==============================
@@ -505,8 +505,8 @@ Sprite_Enemy.prototype.updateAnimationEmot = function() {
     this._battler._emergeMotion.anime1--;
 	if (this._battler._emergeMotion.anime1 < 20) {
 	    this.setFrame(0,0,this._battler._emergeMotion.width,this._battler._emergeMotion.height);	
-	};
-	if (this._battler._emergeMotion.anime1 > 0) {return};
+	}
+	if (this._battler._emergeMotion.anime1 > 0) {return}
 	this._battler._emerge[13] = false;
 };
 
@@ -515,7 +515,7 @@ Sprite_Enemy.prototype.updateAnimationEmot = function() {
 //==============================
 Sprite_Enemy.prototype.updateEmMotion = function() {
 	$gameTemp._emerging[0] = false;
-    if (this.needToGetData()) {this.setupEmotType()};
+    if (this.needToGetData()) {this.setupEmotType()}
 	if (Imported.MOG_BattleTransitions && $gameSystem._trefctData[0]) {
 		this.visible = false;
 		return	
@@ -533,23 +533,23 @@ Sprite_Enemy.prototype.updateEmMotion = function() {
 	    this.updateBouncingEmot();
 	} else {
 	    this.updatePositionEmot()
-    };
+    }
 	this.updateOpacityEmot();
-	if (this._battler._emergeMotion.mode === 10) {this.updateAnimationEmot()};
-    if (this._battler._emergeMotion.mode === 6) {this.updateFrameEm()};
+	if (this._battler._emergeMotion.mode === 10) {this.updateAnimationEmot()}
+    if (this._battler._emergeMotion.mode === 6) {this.updateFrameEm()}
 	if (this._battler._emergeMotion.mode === 7) {
 		this.updateSwingEm()
 	} else {
 		this.updateScaleEmot();
-	};
+	}
 	if (this.isEmotEmerging()) {
 		$gameTemp._emerging[0] = true
 	} else {
 		this._battler._emergeMotion.enabled = false;
 		this.opacity = this._battler._emergeMotion.opacity;
 		this.revertToNormal();
-	};
-    if (this._battler._emerge[6] <= 70) {$gameTemp._emerging[0] = false};
+	}
+    if (this._battler._emerge[6] <= 70) {$gameTemp._emerging[0] = false}
 	$gameTemp._emerging[1] = 5;
 };
 
@@ -562,20 +562,20 @@ Sprite_Enemy.prototype.updateOpacityEmot = function() {
 		this.opacity += 5;
 		if (this.opacity >= this._battler._emergeMotion.opacity) {
 			this.opacity = this._battler._emergeMotion.opacity;
-		}; 
-	};
+		} 
+	}
 };
 
 //==============================
 // * is Emot Done
 //==============================
 Sprite_Enemy.prototype.isEmotEmerging = function() {
-   if (this.x != this._battler._emergeMotion.x) {return true};
-   if (this.y != this._battler._emergeMotion.y) {return true};
-   if (this.scale.x != this._battler._emergeMotion.scaleX) {return true};
-   if (this.scale.y != this._battler._emergeMotion.scaleY) {return true};
-   if (this._battler._emergeMotion.frameCount > 0) {return true};
-   if (this._battler._emerge[13]) {return true};
+   if (this.x != this._battler._emergeMotion.x) {return true}
+   if (this.y != this._battler._emergeMotion.y) {return true}
+   if (this.scale.x != this._battler._emergeMotion.scaleX) {return true}
+   if (this.scale.y != this._battler._emergeMotion.scaleY) {return true}
+   if (this._battler._emergeMotion.frameCount > 0) {return true}
+   if (this._battler._emerge[13]) {return true}
    return false;
 };
 
@@ -583,13 +583,13 @@ Sprite_Enemy.prototype.isEmotEmerging = function() {
 // * Move Emot
 //==============================
 Sprite_Enemy.prototype.moveEmot = function(value,real_value) {
-	if (value == real_value) {return value};
+	if (value == real_value) {return value}
 	var dnspeed = 1 + (Math.abs(value - real_value) / this._battler._emerge[6]);
 	if (value > real_value) {value -= dnspeed;
 	    if (value < real_value) {value = real_value}}
     else if (value < real_value) {value  += dnspeed;
-    	if (value  > real_value) {value  = real_value};		
-    };
+    	if (value  > real_value) {value  = real_value}		
+    }
 	return Math.floor(value);
 };
 
@@ -597,10 +597,10 @@ Sprite_Enemy.prototype.moveEmot = function(value,real_value) {
 // * update Frame
 //==============================
 Sprite_Enemy.prototype.needSkipFrameEM = function() {
-    if (!this._battler) {return false};
-	if (!this._battler._emergeMotion.enabled) {return false};
-	if (this._battler._emergeMotion.mode === 6) {return true};
-	if (this._battler._emergeMotion.mode === 10) {return true};
+    if (!this._battler) {return false}
+	if (!this._battler._emergeMotion.enabled) {return false}
+	if (this._battler._emergeMotion.mode === 6) {return true}
+	if (this._battler._emergeMotion.mode === 10) {return true}
 	return false;
 };
 	
@@ -617,9 +617,9 @@ Sprite_Enemy.prototype.updateFrame = function() {
 // * need Update Em
 //==============================
 Sprite_Enemy.prototype.needUpdateEm = function() {
-    if (!this._battler) {return false};
-	if (!this._battler._emergeMotion.enabled) {return false};
-	if (this._battler.isHidden()) {return false};
+    if (!this._battler) {return false}
+	if (!this._battler._emergeMotion.enabled) {return false}
+	if (this._battler.isHidden()) {return false}
 	return true;
 };
 
@@ -631,6 +631,6 @@ Sprite_Enemy.prototype.updatePosition = function() {
     if (this.needUpdateEm()) {
 		this.updateEmMotion();
 	    return;
-	};
+	}
 	_mog_eMot_sprtEnemy_updatePosition.call(this);
 };

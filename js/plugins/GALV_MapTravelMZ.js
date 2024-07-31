@@ -559,7 +559,7 @@ Scene_MapTravel.prototype.createBackgrounds = function() {
 		this._bgSprites[i].bitmap = ImageManager.loadMapTravelGraphic(bgs[i][0],null,'images/');
 		this._bgSprites[i].opacity = bgs[i][3];
 		this.addChild(this._bgSprites[i]);
-	};
+	}
 };
 
 Scene_MapTravel.prototype.createMap = function() {
@@ -574,10 +574,10 @@ Scene_MapTravel.prototype.createLocations = function() {
 	const locs = this.data().locations;
 	for (let l in locs) {
 		this._locations.push(new Sprite_MapTravelIcon(locs[l].name));
-	};
+	}
 	for (let i = 0; i < this._locations.length; i++) {
 		this.mapSprite.addChild(this._locations[i]);
-	};
+	}
 };
 
 Scene_MapTravel.prototype.createObjects = function() {
@@ -585,10 +585,10 @@ Scene_MapTravel.prototype.createObjects = function() {
 	const objs = this.data().objects;
 	for (let o in objs) {
 		this._objects.push(new Sprite_MapTravelIconObj(objs[o].name));
-	};
+	}
 	for (let i = 0; i < this._objects.length; i++) {
 		this.mapSprite.addChild(this._objects[i]);
-	};
+	}
 };
 	
 Scene_MapTravel.prototype.createForegrounds = function() {		
@@ -602,7 +602,7 @@ Scene_MapTravel.prototype.createForegrounds = function() {
 		this._fgSprites[i].bitmap = ImageManager.loadMapTravelGraphic(fgs[i][0],null,'images/');
 		this._fgSprites[i].opacity = fgs[i][3];
 		this.addChild(this._fgSprites[i]);
-	};
+	}
 };
 
 Scene_MapTravel.prototype.createLocWindow = function() {	
@@ -756,7 +756,7 @@ Scene_MapTravel.prototype.updateKeyboardControls = function() {
 					selectCloset = this._locations[i];
 					dist = dist2;
 				}
-			};	
+			}	
 			Galv.MAPT.active = selectCloset._name || this._locations[0]._name;
 			this.refreshLocations();
 		}
@@ -828,15 +828,15 @@ Scene_MapTravel.prototype.updateRefresh = function() {
 			this._bgSprites[i].height = this.mapSprite.bitmap.height;
 			this._bgSprites[i].x = this.mapSprite.x;
 			this._bgSprites[i].y = this.mapSprite.y;
-		};
+		}
 		for (let i = 0; i < this._fgSprites.length; i++) {
 			this._fgSprites[i].width = this.mapSprite.bitmap.width;
 			this._fgSprites[i].height = this.mapSprite.bitmap.height;
 			this._fgSprites[i].x = this.mapSprite.x;
 			this._fgSprites[i].y = this.mapSprite.y;
-		};
+		}
 		this._needRefresh = false;
-	};
+	}
 };
 
 Scene_MapTravel.prototype.updateLayers = function() {
@@ -846,14 +846,14 @@ Scene_MapTravel.prototype.updateLayers = function() {
 		this._bgSprites[i].y = this.mapSprite.y;
 		this._bgSprites[i].origin.x += bgs[i][1];
 		this._bgSprites[i].origin.y += bgs[i][2];
-	};	
+	}	
 	const fgs = this.data().foregrounds;
 	for (let i = 0; i < this._fgSprites.length; i++) {
 		this._fgSprites[i].x = this.mapSprite.x;
 		this._fgSprites[i].y = this.mapSprite.y;
 		this._fgSprites[i].origin.x += fgs[i][1];
 		this._fgSprites[i].origin.y += fgs[i][2];
-	};
+	}
 };
 
 
@@ -1087,7 +1087,7 @@ Window_MapTravelList.prototype.makeItemList = function() {
 	const locs = this.data().locations;
 	for (let l in locs) {
 		this._data.push(locs[l]);
-	};
+	}
 };
 
 Window_MapTravelList.prototype.drawItem = function(index) {

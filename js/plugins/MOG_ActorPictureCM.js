@@ -227,9 +227,9 @@ PluginManager.registerCommand('MOG_ActorPictureCM', "ActorPicture_setFileName", 
 				actor.setBattleBust_1(fileName);
 				actor.visbattleBust_1(visible);
 				actor.setActorCMbreathEffect(breath)
-			};
-		};
-	};
+			}
+		}
+	}
 });
 
 PluginManager.registerCommand('MOG_ActorPictureCM', "ActorPicture_setFileName2", data => {
@@ -242,9 +242,9 @@ PluginManager.registerCommand('MOG_ActorPictureCM', "ActorPicture_setFileName2",
 			if (actor) {
 				actor.setBattleBust_2(fileName);
 				actor.visbattleBust_2(visible);
-			};
-		};
-	};
+			}
+		}
+	}
 });
 	
 //=============================================================================
@@ -294,8 +294,8 @@ Game_System.prototype.initialize = function() {
 var _mog_actorCM_gint_pluginCommand = Game_Interpreter.prototype.pluginCommand
 Game_Interpreter.prototype.pluginCommand = function(command, args) {
 	_mog_actorCM_gint_pluginCommand.call(this,command, args)
-	if (command === "actorCM_fileName")  {this.setActorCM(args)};
-	if (command === "actorCM_breathEffect")  {this.setActorBreathEffect(args)};
+	if (command === "actorCM_fileName")  {this.setActorCM(args)}
+	if (command === "actorCM_breathEffect")  {this.setActorBreathEffect(args)}
 	return true;
 };
 
@@ -308,9 +308,9 @@ Game_Interpreter.prototype.setActorCM = function(args) {
 	for (var i = 0; i < $gameParty.members().length; i++) {
 	    var actor = $gameParty.members()[i];
 		if (actor._actorId === id) {
-			if (actor) {actor.setActorCMNAme(fileName)};
-		};
-	};
+			if (actor) {actor.setActorCMNAme(fileName)}
+		}
+	}
 };
 
 //==============================
@@ -322,9 +322,9 @@ Game_Interpreter.prototype.setActorBreathEffect = function(args) {
 	for (var i = 0; i < $gameParty.members().length; i++) {
 	    var actor = $gameParty.members()[i];
 		if (actor._actorId === id) {
-			if (actor) {actor.setActorCMbreathEffect(enable)};
-		};
-	};
+			if (actor) {actor.setActorCMbreathEffect(enable)}
+		}
+	}
 };
 
 //=============================================================================
@@ -431,7 +431,7 @@ Scene_Base.prototype.sortMz = function() {
 var _mog_actorPicCM_sbattle_createSpriteset = Scene_Battle.prototype.createSpriteset;
 Scene_Battle.prototype.createSpriteset = function() {
 	_mog_actorPicCM_sbattle_createSpriteset.call(this);
-	if (!this._hudField) {this.createHudField()};
+	if (!this._hudField) {this.createHudField()}
     this.createActorCM();
 	this.sortMz();	
 };
@@ -458,12 +458,12 @@ Scene_Battle.prototype.update = function() {
 // * Sprite Actor CM Visible
 //==============================
 Scene_Battle.prototype.sprite_actor_cm_visible = function() {
-	if (!BattleManager.actor()) {return false};
-	if (this._actorWindow.active) {return false};
-	if (this._enemyWindow.active) {return false};
-	if (this._partyCommandWindow.active) {return false};
-	if ($gameMessage.isBusy()) {return false};
-	if (!BattleManager.isInputting()) {return false};
+	if (!BattleManager.actor()) {return false}
+	if (this._actorWindow.active) {return false}
+	if (this._enemyWindow.active) {return false}
+	if (this._partyCommandWindow.active) {return false}
+	if ($gameMessage.isBusy()) {return false}
+	if (!BattleManager.isInputting()) {return false}
 	return true;
 };
 
@@ -472,7 +472,7 @@ Scene_Battle.prototype.sprite_actor_cm_visible = function() {
 //=============================================================================
 function Actor_CMPicture() {
     this.initialize.apply(this, arguments);
-};
+}
 
 Actor_CMPicture.prototype = Object.create(Sprite.prototype);
 Actor_CMPicture.prototype.constructor = Actor_CMPicture;
@@ -491,16 +491,16 @@ Actor_CMPicture.prototype.initialize = function() {
 	this._xf = 816 - Graphics.width;
     this._yf = 624 - Graphics.height;		
 	this._sldSpd = Math.min(Math.max(Moghunter.actor_slideSpeed,1),999);
-	if (this._cm1) {this.createCM1()};
-	if (this._cm2) {this.createCM2()};
+	if (this._cm1) {this.createCM1()}
+	if (this._cm2) {this.createCM2()}
 };
 
 //==============================
 // * is Visible
 //==============================
 Actor_CMPicture.prototype.isVisible = function() {
-	if (!$gameSystem._actorCmOffSet[0]) {return false};
-	if (!$gameTemp._actorCmData[2]) {return false};
+	if (!$gameSystem._actorCmOffSet[0]) {return false}
+	if (!$gameTemp._actorCmData[2]) {return false}
     return $gameTemp._actorCmData[0];
 };
 
@@ -530,21 +530,21 @@ Actor_CMPicture.prototype.createCM2 = function() {
 // * Hide Sprites
 //==============================
 Actor_CMPicture.prototype.hideSprites = function() {
-	if (this._supSprite) {this._supSprite.visible = false};
-    if (this._bust) {this._bust.visible = false};
+	if (this._supSprite) {this._supSprite.visible = false}
+    if (this._bust) {this._bust.visible = false}
 };
 
 //==============================
 // * move To
 //==============================
 Actor_CMPicture.prototype.moveto = function(value,real_value) {
-	if (value == real_value) {return value};
+	if (value == real_value) {return value}
 	var dnspeed = 2 + (Math.abs(value - real_value) / this._sldSpd);
 	if (value > real_value) {value -= dnspeed;
-	    if (value < real_value) {value = real_value};}
+	    if (value < real_value) {value = real_value}}
     else if (value < real_value) {value  += dnspeed;
-    	if (value  > real_value) {value  = real_value};		
-    };
+    	if (value  > real_value) {value  = real_value}		
+    }
 	return Math.floor(value);
 };
 
@@ -553,7 +553,7 @@ Actor_CMPicture.prototype.moveto = function(value,real_value) {
 //==============================
 Actor_CMPicture.prototype.refreshActor = function() {
 	this._actor = BattleManager.actor();
-	if (this._actor) {this.refreshSprites()};
+	if (this._actor) {this.refreshSprites()}
 };
 
 //==============================
@@ -587,16 +587,16 @@ Actor_CMPicture.prototype.refreshBitmapCM2 = function() {
 //==============================
 Actor_CMPicture.prototype.refreshSprites = function() {
 	this._CmName = this._actor ? this._actor.battleBust_1() : null;
-    if (this._supSprite) {this.refreshBitmapCM1()};
-	if (this._bust) {this.refreshBitmapCM2()};
+    if (this._supSprite) {this.refreshBitmapCM1()}
+	if (this._bust) {this.refreshBitmapCM2()}
 };
 
 //==============================
 // * Need Refresh Actor
 //==============================
 Actor_CMPicture.prototype.needRefreshActor = function() {
-	 if ($gameTemp._actorCmData[1]) {return true};
-	 if (BattleManager.actor() != this._actor) {return true};
+	 if ($gameTemp._actorCmData[1]) {return true}
+	 if (BattleManager.actor() != this._actor) {return true}
 	 if (this._actor && this._CmName != this._actor.battleBust_1())
      return false;
 };
@@ -627,7 +627,7 @@ Actor_CMPicture.prototype.updateCM1 = function() {
 	     this._supSpriteData[4] = this._supSpriteData[2];
 	     this._supSpriteData[5] = this._supSpriteData[3];
 		 this._supSprite.opacity += 15;
-	 };	 
+	 }	 
 	 this._supSprite.x = this.moveto(this._supSprite.x,this._supSpriteData[4]);
  	 this._supSprite.y = this.moveto(this._supSprite.y,this._supSpriteData[5]);
 };
@@ -636,10 +636,10 @@ Actor_CMPicture.prototype.updateCM1 = function() {
 // * need Get Data 1
 //==============================
 Actor_CMPicture.prototype.needGetData1 = function() {
-	 if (!this._supSprite) {return false};
-	 if (this._supSpriteData) {return false};
-	 if (!this._supSprite.bitmap) {return false};
-	 if (!this._supSprite.bitmap.isReady()) {return false};
+	 if (!this._supSprite) {return false}
+	 if (this._supSpriteData) {return false}
+	 if (!this._supSprite.bitmap) {return false}
+	 if (!this._supSprite.bitmap.isReady()) {return false}
 	 return true;
 };
 
@@ -689,10 +689,10 @@ Actor_CMPicture.prototype.updateCM2 = function() {
 	     this._bustData[4] = this._bustData[2];
 	     this._bustData[5] = this._bustData[3];
 		 this._bust.opacity += 15;
-	 };	 
+	 }	 
 	 this._bust.x = this.moveto(this._bust.x,this._bustData[4]);
  	 this._bust.y = this.moveto(this._bust.y,this._bustData[5]);
-     if (this._breahEffect && this._bust.opacity > 0) {this.updateBreathEffect()};
+     if (this._breahEffect && this._bust.opacity > 0) {this.updateBreathEffect()}
 };
 
 //==============================
@@ -705,14 +705,14 @@ Actor_CMPicture.prototype.updateBreathEffect = function() {
 		 if (this._bust.zoom.y >= this._bust.zoom.maxScale) {
 		     this._bust.zoom.y = this._bust.zoom.maxScale;
 			 this._bust.zoom.phase = 1;
-		 };
+		 }
 	 } else {
 		 this._bust.zoom.y -= this._bust.zoom.speed
 		 if (this._bust.zoom.y <= 0) {
 		     this._bust.zoom.y = 0;
 			 this._bust.zoom.phase = 0;
-		 };		 
-	 };
+		 }		 
+	 }
 	 this._bust.scale.y = 1.00 + this._bust.zoom.y;
 };
 
@@ -728,10 +728,10 @@ Actor_CMPicture.prototype.updateOther = function() {
 // * need Get Data 2
 //==============================
 Actor_CMPicture.prototype.needGetData2 = function() {
-	 if (!this._bust) {return false};
-	 if (this._bustData) {return false};
-	 if (!this._bust.bitmap) {return false};
-	 if (!this._bust.bitmap.isReady()) {return false};
+	 if (!this._bust) {return false}
+	 if (this._bustData) {return false}
+	 if (!this._bust.bitmap) {return false}
+	 if (!this._bust.bitmap.isReady()) {return false}
 	 return true;
 };
 
@@ -740,10 +740,10 @@ Actor_CMPicture.prototype.needGetData2 = function() {
 //==============================
 Actor_CMPicture.prototype.update = function() {
 	Sprite.prototype.update.call(this);
-	if (this.needRefreshActor()) {this.refreshActor()};
-	if (this.needGetData1()) {this.getDataCM1()};
-	if (this.needGetData2()) {this.getDataCM2()};
-	if (this._supSpriteData ) {this.updateCM1()};
-	if (this._bustData) {this.updateCM2()};
+	if (this.needRefreshActor()) {this.refreshActor()}
+	if (this.needGetData1()) {this.getDataCM1()}
+	if (this.needGetData2()) {this.getDataCM2()}
+	if (this._supSpriteData ) {this.updateCM1()}
+	if (this._bustData) {this.updateCM2()}
 	this.updateOther();	 
 };

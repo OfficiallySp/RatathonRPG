@@ -439,7 +439,7 @@
 		Moghunter.tparticles_A[i]  = Number(Moghunter.parameters['P' + String(i + 1) + " Anchor"] || 0);
 		Moghunter.tparticles_L[i]  = String(Moghunter.parameters['P' + String(i + 1) + " Leaf Mode"] || "false");
 		Moghunter.tparticles_T[i]  = Number(Moghunter.parameters['P' + String(i + 1) + " Transition Time"] || 60);
-	};
+	}
 
 //=============================================================================
 // ■ Scene Title ■
@@ -450,7 +450,7 @@
 //==============================
 var _mogMZ_titleParticles_createForeground = Scene_Title.prototype.createForeground;
 Scene_Title.prototype.createForeground = function() {
-	if (!this._titleField2) {this.createTitleField2()};
+	if (!this._titleField2) {this.createTitleField2()}
 	this.createTitleParticles();	
 	_mogMZ_titleParticles_createForeground.call(this);
 };
@@ -461,7 +461,7 @@ Scene_Title.prototype.createForeground = function() {
 var _mogMZ_titleParticles_create = Scene_Title.prototype.create;
 Scene_Title.prototype.create = function() {
 	_mogMZ_titleParticles_create.call(this);
-	if (this._titleField2) {this._titleField2.children.sort((a, b) => a.z - b.z)};
+	if (this._titleField2) {this._titleField2.children.sort((a, b) => a.z - b.z)}
 };
 
 //==============================
@@ -482,7 +482,7 @@ Scene_Title.prototype.createTitleParticles = function() {
        this._tparticles[i] = new TitleParticles(i);
 	   this._tparticles[i].z = 100 + i;
 	   this._titleField2.addChild(this._tparticles[i]);
-    };   
+    }   
 };
 
 //=============================================================================
@@ -490,7 +490,7 @@ Scene_Title.prototype.createTitleParticles = function() {
 //=============================================================================
 function TitleParticles() {
     this.initialize.apply(this, arguments);
-};
+}
 
 TitleParticles.prototype = Object.create(Sprite.prototype);
 TitleParticles.prototype.constructor = TitleParticles;
@@ -510,7 +510,7 @@ TitleParticles.prototype.initialize = function(index) {
 		this._img._ch = 0;
 		this._img._cw2 = 0;
 		this._img._ch2 = 0;		
-	};
+	}
 };	
      
 //==============================
@@ -541,7 +541,7 @@ TitleParticles.prototype.createParticles = function() {
 		 this._spriteP[i].lef = [String(Moghunter.tparticles_L[this._index]) === "true" ? true : false,0,1.00,0];
 		 this.addChild(this._spriteP[i]);
 		 this.refreshParticles(this._spriteP[i]);
-	};
+	}
 	this._start = true;
 };	
 
@@ -552,15 +552,15 @@ TitleParticles.prototype.refreshParticles = function(sprite) {
 	 if (sprite.sx[1] != 0) {
 	     var r = 0.7 + Math.abs(Math.random() * sprite.sx[1]);
 		 sprite.sx[0] = sprite.sx[1] > 0 ? r : -r;
-	 };
+	 }
 	 if (sprite.sy[1] != 0) {
 	     var r = 0.7 + Math.abs(Math.random() * sprite.sy[1]);
 		 sprite.sy[0] = sprite.sy[1] > 0 ? r : -r;
-	 };
+	 }
 	 if (sprite.rt[1] != 0) {
 	     var r = 0.03 + Math.abs(Math.random() * sprite.rt[1]);
 		 sprite.rt[0] = sprite.rt[1] > 0 ? r : -r;
-	 };	 
+	 }	 
      var r = Math.randomInt(360) * 0.01;		 
      sprite.rotation = r;	 
 	 var pz = ((Math.random() * 0.5) * 1);
@@ -582,7 +582,7 @@ TitleParticles.prototype.setPosition = function(sprite) {
 	} else {
         this.setPositionX(sprite);
         this.setPositionY(sprite);	
-	};
+	}
 };
 
 //==============================
@@ -609,7 +609,7 @@ TitleParticles.prototype.setPositionX = function(sprite) {
 	} else {
 		var r = Math.randomInt(Graphics.width + this._img._cw * 2);
 		sprite.x = -this._img._cw + r;			
-	};
+	}
 };
 
 //==============================
@@ -623,7 +623,7 @@ TitleParticles.prototype.setPositionY = function(sprite) {
 	} else {
 		var r = Math.randomInt(Graphics.height + this._img._ch * 2);
 		sprite.y = -this._img._ch + r;
-	};
+	}
 };
 
 //==============================
@@ -631,7 +631,7 @@ TitleParticles.prototype.setPositionY = function(sprite) {
 //==============================
 TitleParticles.prototype.lx1 = function(sprite) {
    if (sprite.sx[1] > 0) {return -Graphics.width / 2;
-   } else {return -this._img._cw2};
+   } else {return -this._img._cw2}
 };
 
 //==============================
@@ -639,7 +639,7 @@ TitleParticles.prototype.lx1 = function(sprite) {
 //==============================
 TitleParticles.prototype.lx2 = function(sprite) {
     if (sprite.sx[1] > 0) {return Graphics.width + this._img._cw2;
-	} else {return Graphics.width + Graphics.width / 2};
+	} else {return Graphics.width + Graphics.width / 2}
 };
 
 //==============================
@@ -664,7 +664,7 @@ TitleParticles.prototype.updateMove = function(sprite) {
 	 sprite.y += sprite.sy[0];
 	 sprite.rotation += sprite.rt[0];
 	 sprite.opacity += 15;
-	 if (sprite.lef[0]) {this.updateLeaf(sprite)};
+	 if (sprite.lef[0]) {this.updateLeaf(sprite)}
 };
 
 //==============================
@@ -672,22 +672,22 @@ TitleParticles.prototype.updateMove = function(sprite) {
 //==============================
 TitleParticles.prototype.updateLeaf = function(sprite) {
 	sprite.lef[3]--;
-	if (sprite.lef[3] > 0) {return}; 
+	if (sprite.lef[3] > 0) {return} 
 	sprite.scale.x -= 0.01;
 	if (sprite.scale.x < -sprite.lef[2]) {
 		 sprite.lef[1] = 1;
 		 sprite.scale.x = -sprite.lef[2];
-	};
+	}
 };
 
 //==============================
 // * Need Refresh
 //==============================
 TitleParticles.prototype.needRefresh = function(sprite) {
-     if (sprite.x < this.lx1(sprite)) {return true};
-	 if (sprite.x > this.lx2(sprite)) {return true};
-	 if (sprite.y < this.ly1(sprite)) {return true};
-	 if (sprite.y > this.ly2(sprite)) {return true};
+     if (sprite.x < this.lx1(sprite)) {return true}
+	 if (sprite.x > this.lx2(sprite)) {return true}
+	 if (sprite.y < this.ly1(sprite)) {return true}
+	 if (sprite.y > this.ly2(sprite)) {return true}
 	 return false
 };
 	
@@ -695,13 +695,13 @@ TitleParticles.prototype.needRefresh = function(sprite) {
 // * update Particles
 //==============================
 TitleParticles.prototype.updateParticles = function() {
-	 if (this._img.isReady() && !this._start) {this.getData()};
-	 if (!this._start) {return};
-	 if (!this._spriteP) {return};
+	 if (this._img.isReady() && !this._start) {this.getData()}
+	 if (!this._start) {return}
+	 if (!this._spriteP) {return}
 	 for (var i = 0; i < this._spriteP.length; i++) {
 		  this.updateMove(this._spriteP[i]);
-		  if (this.needRefresh(this._spriteP[i])) {this.refreshParticles(this._spriteP[i])};
-	 };
+		  if (this.needRefresh(this._spriteP[i])) {this.refreshParticles(this._spriteP[i])}
+	 }
 };
 		
 //==============================
@@ -709,5 +709,5 @@ TitleParticles.prototype.updateParticles = function() {
 //==============================
 TitleParticles.prototype.update = function() {
 	Sprite.prototype.update.call(this);
-	if (this._enabled) {this.updateParticles()};
+	if (this._enabled) {this.updateParticles()}
 };	
